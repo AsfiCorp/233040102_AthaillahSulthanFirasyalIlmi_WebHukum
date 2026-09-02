@@ -77,7 +77,7 @@
 
     // ── Gemini called directly from browser (avoids server timeout) ──
     const GEMINI_API_KEY = '{{ config("services.gemini.api_key") }}';
-    const GEMINI_URL     = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=' + GEMINI_API_KEY;
+    const GEMINI_MODELS  = ['gemini-3.6-flash', 'gemini-1.5-flash', 'gemini-1.5-pro'];
     const SYSTEM_PROMPT  = "Kamu adalah asisten hukum virtual dari D'Mahesa Law Firm, kantor hukum terkemuka di Indonesia. Jawab pertanyaan dengan profesional, ramah, dan dalam bahasa Indonesia. Berikan jawaban yang ringkas dan padat. Jika pertanyaan di luar bidang hukum, arahkan pengguna untuk berkonsultasi langsung dengan advokat kami.";
 
     function togglePanel() {
@@ -128,6 +128,42 @@
         if (t) { t.remove(); }
     }
 
+    async function callGemini(prompt, modelIndex) {
+        const model = GEMINI_MODELS[modelIndex];
+        const url   = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
+
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+                contents: [{ parts: [{ text: prompt }] }],
+                generationConfig: { temperature: 0.7, maxOutputTokens: 4096 }
+            })
+        });
+
+        const data = await res.json();
+
+        // If model is overloaded/unavailable and we have more fallbacks, try next
+        if (data.error) {
+            const code = data.error.code;
+            const isOverloaded = code === 503 || code === 429 || code === 404 ||
+                                 (data.error.message || '').toLowerCase().includes('demand') ||
+                                 (data.error.message || '').toLowerCase().includes('overload');
+
+            if (isOverloaded && modelIndex < GEMINI_MODELS.length - 1) {
+                return callGemini(prompt, modelIndex + 1);
+            }
+            throw new Error(data.error.message);
+        }
+
+        if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+            return data.candidates[0].content.parts[0].text;
+        }
+
+        throw new Error('Respons tidak valid dari API.');
+    }
+
     async function sendMessage() {
         const text = input.value.trim();
         if (!text) { return; }
@@ -138,38 +174,15 @@
         sendBtn.disabled = true;
 
         try {
-            const res = await fetch(GEMINI_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    system_instruction: {
-                        parts: [{ text: SYSTEM_PROMPT }]
-                    },
-                    contents: [{
-                        parts: [{ text: text }]
-                    }],
-                    generationConfig: {
-                        temperature: 0.7,
-                        maxOutputTokens: 4096
-                    }
-                })
-            });
-
-            const data = await res.json();
-
+            const reply = await callGemini(text, 0);
             removeTyping();
-
-            if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-                const reply = data.candidates[0].content.parts[0].text;
-                appendMessage(parseMarkdown(reply), false);
-            } else if (data.error) {
-                appendMessage('Error: ' + escapeHtml(data.error.message), false);
-            } else {
-                appendMessage('Maaf, saya tidak dapat memproses permintaan Anda saat ini.', false);
-            }
+            appendMessage(parseMarkdown(reply), false);
         } catch (e) {
             removeTyping();
-            appendMessage('Terjadi kesalahan koneksi. Pastikan internet Anda terhubung.', false);
+            const msg = e.message && e.message.length < 200
+                ? 'Maaf: ' + escapeHtml(e.message)
+                : 'Layanan AI sedang sibuk. Silakan coba lagi dalam beberapa saat.';
+            appendMessage(msg, false);
         } finally {
             sendBtn.disabled = false;
             input.focus();
