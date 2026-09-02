@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Advocate;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class AdvocateController extends Controller
