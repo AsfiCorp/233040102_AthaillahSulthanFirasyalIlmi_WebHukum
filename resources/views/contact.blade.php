@@ -83,7 +83,7 @@
                             Connect directly with our client relations team via WhatsApp for immediate assistance.
                         </p>
                     </div>
-                    <a href="https://wa.me/#"
+                    <a href="{{ setting('wa_btn_url', 'https://wa.me/#') }}"
                        class="flex items-center justify-center gap-2 mt-auto transition-colors duration-300"
                        style="border:1px solid #e9c349; color:#e9c349; font-size:12px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase; padding:16px 24px; text-decoration:none;"
                        onmouseover="this.style.background='rgba(233,195,73,0.1)'" onmouseout="this.style.background='transparent'">

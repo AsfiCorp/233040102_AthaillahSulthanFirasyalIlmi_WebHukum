@@ -82,7 +82,7 @@
                    onmouseover="this.style.background='#ffe088'" onmouseout="this.style.background='#e9c349'">
                     Book a Consultation
                 </a>
-                <a href="https://wa.me/#"
+                <a href="{{ setting('wa_btn_url', 'https://wa.me/#') }}"
                    class="inline-flex justify-center items-center gap-2 font-bold transition-colors duration-300"
                    style="border:1px solid #e9c349; color:#e9c349; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; padding:16px 32px; text-decoration:none;"
                    onmouseover="this.style.background='rgba(233,195,73,0.1)'" onmouseout="this.style.background='transparent'">
