@@ -11,7 +11,7 @@
     {{-- Background --}}
     <div class="absolute inset-0 z-0">
         <div class="w-full h-full bg-cover bg-center opacity-40"
-             style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5cCrApsVK-BEkeI2HpcZCyZJY3wexGLmCf_HgZoHkf8sd1G8YKMitChNPzKtK_B5BLZGVORajj3iF5thUMMLBLSm69vWsVUY7nIRtrtoIBaSsTDPnVXyInIPDjJnpR-LQQIuRrkVzkDG-AYvN_ooO6XdSNszxN_nWKNzPc0m3tri5bUmDVRH4kO58iTe47OgttMINs_UIKSYMO9YlA2xMe5LsVTBrWK9R_QZtWBOAYkmxnWQDsusfnQ');">
+             style="background-image:url('{{ asset('images/hero-bg.jpeg') }}');">
         </div>
         <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(11,19,43,0.92), rgba(11,19,43,0.45));"></div>
     </div>

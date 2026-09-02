@@ -4,7 +4,10 @@
 
         {{-- Brand Column --}}
         <div class="md:col-span-1">
-            <div class="font-bold mb-4" style="font-family:'Playfair Display',serif; font-size:40px; line-height:48px; color:#e9c349;">{{ setting('brand_name', 'D\'MAHESA') }}</div>
+            <div class="flex items-center gap-3 font-bold mb-4" style="font-family:'Playfair Display',serif; font-size:40px; line-height:48px; color:#e9c349;">
+                <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" style="height:48px; width:auto; object-fit:contain; border-radius:4px;">
+                <span>{{ setting('brand_name', 'D\'MAHESA') }}</span>
+            </div>
             <p style="color:#c6c6ce; font-size:16px; line-height:24px; margin-bottom:24px;">
                 {{ setting('footer_desc', 'Elevating legal strategy with precision and authority.') }}
             </p>
