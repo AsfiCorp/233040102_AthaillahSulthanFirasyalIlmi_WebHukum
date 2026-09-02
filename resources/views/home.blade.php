@@ -19,29 +19,34 @@
     <div class="relative z-10 mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8" style="max-width:1280px; padding:0 32px;">
         <div class="md:col-span-8 lg:col-span-7 flex flex-col justify-center py-24">
 
+            @php
+                $heroLines = explode("\n", str_replace("\r", "", setting('hero_title', "Keadilan\nIntegritas\nProfesionalisme")));
+                $lastLine = array_pop($heroLines);
+            @endphp
             <h1 class="mb-8 leading-tight" style="font-family:'Playfair Display',serif; font-size:clamp(40px,6vw,64px); line-height:1.1; font-weight:700; color:#e1e3e4;">
-                <span class="block">Keadilan</span>
-                <span class="block">Integritas</span>
-                <span class="block text-gradient">Profesionalisme</span>
+                @foreach($heroLines as $line)
+                    <span class="block">{{ $line }}</span>
+                @endforeach
+                <span class="block text-gradient">{{ $lastLine }}</span>
             </h1>
 
             <p class="mb-10 max-w-2xl" style="font-size:18px; line-height:28px; color:#c6c6ce;">
-                Uncompromising legal expertise for those who demand excellence. We secure your legacy through strategic litigation, meticulous counsel, and relentless dedication to justice.
+                {{ setting('hero_subtitle', 'Uncompromising legal expertise for those who demand excellence. We secure your legacy through strategic litigation, meticulous counsel, and relentless dedication to justice.') }}
             </p>
 
             <div class="flex flex-wrap gap-4">
-                <a href="{{ route('advocates.index') }}"
+                <a href="{{ setting('hero_btn1_url', route('advocates.index')) }}"
                    class="flex items-center gap-2 font-bold transition-colors duration-300"
                    style="background:#e9c349; color:#0b132b; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; padding:16px 32px; text-decoration:none; border:1px solid #e9c349;"
                    onmouseover="this.style.background='#ffe088'" onmouseout="this.style.background='#e9c349'">
-                    Meet Our Team
+                    {{ setting('hero_btn1_text', 'Meet Our Team') }}
                     <span class="material-symbols-outlined">arrow_forward</span>
                 </a>
-                <a href="{{ route('news.index') }}"
+                <a href="{{ setting('hero_btn2_url', route('news.index')) }}"
                    class="font-bold transition-colors duration-300 flex items-center"
                    style="border:1px solid #e9c349; color:#e9c349; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; padding:16px 32px; text-decoration:none;"
                    onmouseover="this.style.background='rgba(11,19,43,0.5)'" onmouseout="this.style.background='transparent'">
-                    News & Insights
+                    {{ setting('hero_btn2_text', 'News & Insights') }}
                 </a>
             </div>
         </div>
@@ -59,20 +64,21 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            @foreach([
-                ['icon' => 'gavel', 'title' => 'Litigasi Korporat', 'desc' => 'Pertahanan strategis dan penuntutan dalam sengketa komersial yang kompleks.'],
-                ['icon' => 'balance', 'title' => 'Arbitrase Internasional', 'desc' => 'Penyelesaian sengketa lintas batas dengan keahlian hukum internasional.'],
-                ['icon' => 'business_center', 'title' => 'Hukum Bisnis', 'desc' => 'Konsultasi komprehensif untuk transaksi bisnis dan kepatuhan regulasi.'],
-            ] as $service)
+            @for($i = 1; $i <= 3; $i++)
+            @php
+                $defaultIcons = ['gavel', 'balance', 'business_center'];
+                $defaultTitles = ['Litigasi Korporat', 'Arbitrase Internasional', 'Hukum Bisnis'];
+                $defaultDescs = ['Pertahanan strategis dan penuntutan dalam sengketa komersial yang kompleks.', 'Penyelesaian sengketa lintas batas dengan keahlian hukum internasional.', 'Konsultasi komprehensif untuk transaksi bisnis dan kepatuhan regulasi.'];
+            @endphp
             <div class="p-8 transition-all duration-300 group"
                  style="background:#1d2021; border:1px solid rgba(69,70,77,0.3);"
                  onmouseover="this.style.borderColor='rgba(233,195,73,0.5)'"
                  onmouseout="this.style.borderColor='rgba(69,70,77,0.3)'">
-                <span class="material-symbols-outlined mb-6 block" style="font-size:40px; color:#e9c349;">{{ $service['icon'] }}</span>
-                <h3 style="font-family:'Playfair Display',serif; font-size:24px; font-weight:600; color:#e1e3e4; margin-bottom:12px;">{{ $service['title'] }}</h3>
-                <p style="color:#c6c6ce; font-size:16px; line-height:24px;">{{ $service['desc'] }}</p>
+                <span class="material-symbols-outlined mb-6 block" style="font-size:40px; color:#e9c349;">{{ setting('service_'.$i.'_icon', $defaultIcons[$i-1]) }}</span>
+                <h3 style="font-family:'Playfair Display',serif; font-size:24px; font-weight:600; color:#e1e3e4; margin-bottom:12px;">{{ setting('service_'.$i.'_title', $defaultTitles[$i-1]) }}</h3>
+                <p style="color:#c6c6ce; font-size:16px; line-height:24px;">{{ setting('service_'.$i.'_desc', $defaultDescs[$i-1]) }}</p>
             </div>
-            @endforeach
+            @endfor
         </div>
     </div>
 </section>

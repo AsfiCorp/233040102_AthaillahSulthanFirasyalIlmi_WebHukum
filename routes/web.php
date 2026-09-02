@@ -61,6 +61,10 @@ Route::middleware(['auth', \App\Http\Middleware\CheckAdminPanelAccess::class])->
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // UI Settings
+    Route::get('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
+    Route::put('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
+
     // Advocate CRUD
     Route::get('/advocates', [AdminAdvocateController::class, 'index'])->name('advocates.index');
     Route::get('/advocates/create', [AdminAdvocateController::class, 'create'])->name('advocates.create');

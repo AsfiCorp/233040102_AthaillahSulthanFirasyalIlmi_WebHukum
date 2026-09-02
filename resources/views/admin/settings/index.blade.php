@@ -1,0 +1,137 @@
+@extends('layouts.admin')
+
+@section('title', 'Pengaturan Web')
+@section('header', 'Pengaturan Web (UI & Konten)')
+
+@section('content')
+
+@if(session('success'))
+    <div class="mb-4 bg-green-900/50 border border-green-500 text-green-200 px-4 py-3 rounded">
+        {{ session('success') }}
+    </div>
+@endif
+
+<form action="{{ route('admin.settings.update') }}" method="POST" class="space-y-8">
+    @csrf
+    @method('PUT')
+
+    {{-- HEADER / NAVBAR SETTINGS --}}
+    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-700 bg-slate-900/50">
+            <h2 class="text-lg font-semibold text-white">Header & Navigasi</h2>
+        </div>
+        <div class="p-6 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Nama Brand (Logo Text)</label>
+                    <input type="text" name="brand_name" value="{{ $settings['brand_name'] ?? 'D\'MAHESA' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Teks Tombol WhatsApp</label>
+                    <input type="text" name="wa_btn_text" value="{{ $settings['wa_btn_text'] ?? 'WhatsApp Consultation' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Link WhatsApp (URL)</label>
+                    <input type="text" name="wa_btn_url" value="{{ $settings['wa_btn_url'] ?? 'https://wa.me/#' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- HERO SETTINGS --}}
+    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-700 bg-slate-900/50">
+            <h2 class="text-lg font-semibold text-white">Beranda: Hero Section</h2>
+        </div>
+        <div class="p-6 space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-2">Judul Utama (Gunakan <br> untuk baris baru)</label>
+                <textarea name="hero_title" rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">{{ $settings['hero_title'] ?? "Keadilan\nIntegritas\nProfesionalisme" }}</textarea>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-2">Sub Judul / Deskripsi</label>
+                <textarea name="hero_subtitle" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">{{ $settings['hero_subtitle'] ?? 'Uncompromising legal expertise for those who demand excellence.' }}</textarea>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Teks Tombol Kiri</label>
+                    <input type="text" name="hero_btn1_text" value="{{ $settings['hero_btn1_text'] ?? 'Meet Our Team' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Link Tombol Kiri (URL/Route)</label>
+                    <input type="text" name="hero_btn1_url" value="{{ $settings['hero_btn1_url'] ?? route('advocates.index') }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Teks Tombol Kanan</label>
+                    <input type="text" name="hero_btn2_text" value="{{ $settings['hero_btn2_text'] ?? 'News & Insights' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Link Tombol Kanan (URL/Route)</label>
+                    <input type="text" name="hero_btn2_url" value="{{ $settings['hero_btn2_url'] ?? route('news.index') }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- SERVICES SETTINGS --}}
+    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-700 bg-slate-900/50">
+            <h2 class="text-lg font-semibold text-white">Beranda: Layanan Kami</h2>
+        </div>
+        <div class="p-6 space-y-8">
+            @for ($i = 1; $i <= 3; $i++)
+            <div class="p-4 border border-slate-700 rounded bg-slate-800/50">
+                <h3 class="text-md font-medium text-amber-500 mb-4">Layanan {{ $i }}</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">Nama Ikon (Google Material)</label>
+                        <input type="text" name="service_{{ $i }}_icon" value="{{ $settings["service_{$i}_icon"] ?? ['gavel', 'balance', 'business_center'][$i-1] }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-1">Judul Layanan</label>
+                        <input type="text" name="service_{{ $i }}_title" value="{{ $settings["service_{$i}_title"] ?? ['Litigasi Korporat', 'Arbitrase Internasional', 'Hukum Bisnis'][$i-1] }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-slate-300 mb-1">Deskripsi Layanan</label>
+                        <textarea name="service_{{ $i }}_desc" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">{{ $settings["service_{$i}_desc"] ?? ['Pertahanan strategis...', 'Penyelesaian sengketa...', 'Konsultasi komprehensif...'][$i-1] }}</textarea>
+                    </div>
+                </div>
+            </div>
+            @endfor
+        </div>
+    </div>
+
+    {{-- FOOTER SETTINGS --}}
+    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-700 bg-slate-900/50">
+            <h2 class="text-lg font-semibold text-white">Footer</h2>
+        </div>
+        <div class="p-6 space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-2">Deskripsi Singkat Footer</label>
+                <textarea name="footer_desc" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">{{ $settings['footer_desc'] ?? 'Elevating legal strategy with precision and authority.' }}</textarea>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Alamat / Lokasi</label>
+                    <input type="text" name="footer_location" value="{{ $settings['footer_location'] ?? 'Jakarta, Indonesia' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Email Kontak</label>
+                    <input type="text" name="footer_email" value="{{ $settings['footer_email'] ?? 'inquiries@dmahesa.com' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Teks Hak Cipta (Copyright)</label>
+                    <input type="text" name="footer_copyright" value="{{ $settings['footer_copyright'] ?? 'D\'Mahesa Legal Group. All Rights Reserved.' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex justify-end">
+        <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold py-3 px-8 rounded-lg shadow transition-colors">
+            Simpan Pengaturan
+        </button>
+    </div>
+</form>
+@endsection

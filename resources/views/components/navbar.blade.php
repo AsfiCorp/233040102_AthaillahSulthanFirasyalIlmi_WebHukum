@@ -7,7 +7,7 @@
         {{-- Brand --}}
         <a href="{{ route('home') }}" class="font-bold tracking-tighter"
            style="font-family:'Playfair Display',serif; font-size:32px; line-height:40px; color:#e1e3e4; text-decoration:none;">
-            D'MAHESA
+            {{ setting('brand_name', 'D\'MAHESA') }}
         </a>
 
         {{-- Desktop Navigation --}}
@@ -72,12 +72,12 @@
 
         {{-- CTA Button --}}
         <div class="hidden md:flex items-center">
-            <a href="https://wa.me/#"
+            <a href="{{ setting('wa_btn_url', 'https://wa.me/#') }}"
                class="flex items-center gap-2 font-bold px-6 py-3 transition-colors duration-300"
                style="background:#e9c349; color:#0b132b; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none;"
                onmouseover="this.style.background='#ffe088'" onmouseout="this.style.background='#e9c349'">
                 <span class="material-symbols-outlined" style="font-size:18px;">forum</span>
-                WhatsApp Consultation
+                {{ setting('wa_btn_text', 'WhatsApp Consultation') }}
             </a>
         </div>
 
