@@ -41,6 +41,8 @@ class GoogleController extends Controller
 
         Auth::login($user, true);
 
+        request()->session()->regenerate();
+
         if ($user->is_admin || $user->email === 'admin@dmahesa.com') {
             return redirect()->route('admin.dashboard');
         }

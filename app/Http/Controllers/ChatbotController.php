@@ -27,14 +27,14 @@ class ChatbotController extends Controller
 
         try {
             $response = Http::timeout(30)->post(
-                "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key={$apiKey}",
+                "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={$apiKey}",
                 [
                     'system_instruction' => [
                         'parts' => [
                             [
-                                'text' => "Kamu adalah asisten hukum virtual dari D'Mahesa Law Firm, kantor hukum terkemuka di Indonesia. Jawab pertanyaan dengan profesional, ramah, dan dalam bahasa Indonesia. Jika pertanyaan di luar bidang hukum, arahkan pengguna untuk berkonsultasi langsung dengan advokat kami."
-                            ]
-                        ]
+                                'text' => "Kamu adalah asisten hukum virtual dari D'Mahesa Law Firm, kantor hukum terkemuka di Indonesia. Jawab pertanyaan dengan profesional, ramah, dan dalam bahasa Indonesia. Jika pertanyaan di luar bidang hukum, arahkan pengguna untuk berkonsultasi langsung dengan advokat kami.",
+                            ],
+                        ],
                     ],
                     'contents' => [
                         [

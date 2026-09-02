@@ -112,8 +112,16 @@
         if (typing) { typing.remove(); }
     }
 
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.appendChild(document.createTextNode(text));
+        return div.innerHTML;
+    }
+
     function parseMarkdown(text) {
-        let html = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // Escape HTML first to prevent XSS, then apply safe markdown transforms
+        let html = escapeHtml(text);
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
         html = html.replace(/\n/g, '<br>');
         return html;

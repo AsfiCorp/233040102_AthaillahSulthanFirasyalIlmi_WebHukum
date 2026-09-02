@@ -17,6 +17,7 @@ class SettingController extends Controller
     public function index(): View
     {
         $settings = Setting::pluck('value', 'key')->toArray();
+
         return view('admin.settings.index', compact('settings'));
     }
 
@@ -26,6 +27,11 @@ class SettingController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $data = $request->except(['_token', '_method']);
+
+        // Validate all settings keys are strings and not too long
+        $request->validate(
+            collect($data)->mapWithKeys(fn ($v, $k) => [$k => ['nullable', 'string', 'max:500']])->toArray()
+        );
 
         foreach ($data as $key => $value) {
             Setting::updateOrCreate(

@@ -33,9 +33,8 @@ class RegisterController extends Controller
 
         $user = User::create($validated);
 
-        Auth::login($user);
-
         $request->session()->regenerate();
+        Auth::login($user);
 
         return redirect()->route('home')->with('success', 'Pendaftaran berhasil. Anda sudah login.');
     }

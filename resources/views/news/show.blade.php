@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', $news->title . " | D'Mahesa Legal Group")
-@section('meta-description', Str::limit(strip_tags($news->content), 160))
+@section('meta-description', Str::limit(strip_tags((string) $news->content), 160))
 
 @section('content')
 <div style="background:#0b132b; padding-top:80px;">
