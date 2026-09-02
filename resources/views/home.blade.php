@@ -162,7 +162,7 @@
                         {{ $news->isExternal() ? 'External Source' : 'Firm News' }}
                     </span>
 
-                    <h3 class="mb-4 transition-colors duration-300" style="font-family:'Playfair Display',serif; font-size:24px; font-weight:600; color:#e1e3e4; flex-grow:1;">
+                    <h3 class="mb-4 transition-colors duration-300 break-words line-clamp-2" style="font-family:'Playfair Display',serif; font-size:24px; font-weight:600; color:#e1e3e4; flex-grow:1; display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;">
                         {{ $news->title }}
                     </h3>
 

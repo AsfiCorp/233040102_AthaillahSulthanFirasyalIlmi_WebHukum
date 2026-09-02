@@ -54,12 +54,12 @@
                         {{ $item->isExternal() ? 'External Source' : 'Firm News' }}
                     </span>
 
-                    <h2 class="mb-4 transition-colors duration-300 flex-grow" style="font-family:'Playfair Display',serif; font-size:24px; line-height:32px; font-weight:600; color:#e1e3e4;"
+                    <h2 class="mb-4 transition-colors duration-300 flex-grow break-words line-clamp-2" style="font-family:'Playfair Display',serif; font-size:24px; line-height:32px; font-weight:600; color:#e1e3e4;"
                         onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='#e1e3e4'">
                         {{ $item->title }}
                     </h2>
 
-                    <p class="mb-8 flex-grow" style="font-size:16px; line-height:24px; color:#c6c6ce;">
+                    <p class="mb-8 flex-grow break-words line-clamp-3" style="font-size:16px; line-height:24px; color:#c6c6ce; display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;">
                         {{ Str::limit(strip_tags($item->content), 120) }}
                     </p>
 
