@@ -14,9 +14,15 @@
         <div>
             <h4 class="mb-6" style="font-size:12px; line-height:16px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase; color:#e1e3e4;">Firm</h4>
             <ul class="space-y-4">
-                <li><a href="{{ route('home') }}" style="color:#c6c6ce; text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='#c6c6ce'">About Us</a></li>
-                <li><a href="{{ route('advocates.index') }}" style="color:#c6c6ce; text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='#c6c6ce'">Our Attorneys</a></li>
-                <li><a href="{{ route('news.index') }}" style="color:#c6c6ce; text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='#c6c6ce'">News & Insights</a></li>
+                @for ($i = 1; $i <= 3; $i++)
+                @php
+                    $text = setting("footer_firm_text_{$i}", ['About Us', 'Our Attorneys', 'News & Insights'][$i-1]);
+                    $url = setting("footer_firm_url_{$i}", [route('home'), route('advocates.index'), route('news.index')][$i-1]);
+                @endphp
+                @if($text)
+                <li><a href="{{ $url }}" style="color:#c6c6ce; text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='#c6c6ce'">{{ $text }}</a></li>
+                @endif
+                @endfor
             </ul>
         </div>
 
@@ -24,9 +30,15 @@
         <div>
             <h4 class="mb-6" style="font-size:12px; line-height:16px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase; color:#e1e3e4;">Legal</h4>
             <ul class="space-y-4">
-                <li><a href="#" style="color:#c6c6ce; text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='#c6c6ce'">Privacy Policy</a></li>
-                <li><a href="#" style="color:#c6c6ce; text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='#c6c6ce'">Terms of Service</a></li>
-                <li><a href="#" style="color:#c6c6ce; text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='#c6c6ce'">Disclosures</a></li>
+                @for ($i = 1; $i <= 3; $i++)
+                @php
+                    $text = setting("footer_legal_text_{$i}", ['Privacy Policy', 'Terms of Service', 'Disclosures'][$i-1]);
+                    $url = setting("footer_legal_url_{$i}", '#');
+                @endphp
+                @if($text)
+                <li><a href="{{ $url }}" style="color:#c6c6ce; text-decoration:none; transition:color 0.3s;" onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='#c6c6ce'">{{ $text }}</a></li>
+                @endif
+                @endfor
             </ul>
         </div>
 

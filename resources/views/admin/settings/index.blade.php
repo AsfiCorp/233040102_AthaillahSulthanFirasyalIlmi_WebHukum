@@ -125,6 +125,31 @@
                     <input type="text" name="footer_copyright" value="{{ $settings['footer_copyright'] ?? 'D\'Mahesa Legal Group. All Rights Reserved.' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
                 </div>
             </div>
+
+            <hr class="border-slate-700 my-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {{-- Firm Links --}}
+                <div>
+                    <h3 class="text-md font-medium text-amber-500 mb-4">Firm Links</h3>
+                    @for ($i = 1; $i <= 3; $i++)
+                    <div class="flex gap-2 mb-2">
+                        <input type="text" name="footer_firm_text_{{ $i }}" value="{{ $settings["footer_firm_text_{$i}"] ?? ['About Us', 'Our Attorneys', 'News & Insights'][$i-1] }}" placeholder="Teks Link {{ $i }}" class="w-1/2 bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-amber-500">
+                        <input type="text" name="footer_firm_url_{{ $i }}" value="{{ $settings["footer_firm_url_{$i}"] ?? [route('home'), route('advocates.index'), route('news.index')][$i-1] }}" placeholder="URL {{ $i }}" class="w-1/2 bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-amber-500">
+                    </div>
+                    @endfor
+                </div>
+                {{-- Legal Links --}}
+                <div>
+                    <h3 class="text-md font-medium text-amber-500 mb-4">Legal Links</h3>
+                    @for ($i = 1; $i <= 3; $i++)
+                    <div class="flex gap-2 mb-2">
+                        <input type="text" name="footer_legal_text_{{ $i }}" value="{{ $settings["footer_legal_text_{$i}"] ?? ['Privacy Policy', 'Terms of Service', 'Disclosures'][$i-1] }}" placeholder="Teks Link {{ $i }}" class="w-1/2 bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-amber-500">
+                        <input type="text" name="footer_legal_url_{{ $i }}" value="{{ $settings["footer_legal_url_{$i}"] ?? '#' }}" placeholder="URL {{ $i }}" class="w-1/2 bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-amber-500">
+                    </div>
+                    @endfor
+                </div>
+            </div>
         </div>
     </div>
 

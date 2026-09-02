@@ -112,12 +112,19 @@
         if (typing) { typing.remove(); }
     }
 
+    function parseMarkdown(text) {
+        let html = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        html = html.replace(/\n/g, '<br>');
+        return html;
+    }
+
     async function sendMessage() {
         const text = input.value.trim();
         if (!text) { return; }
 
         input.value = '';
-        appendMessage(text, true);
+        appendMessage(parseMarkdown(text), true);
         appendTyping();
         sendBtn.disabled = true;
 
@@ -133,7 +140,7 @@
             });
             const data = await res.json();
             removeTyping();
-            appendMessage(data.reply || 'Maaf, terjadi kesalahan.', false);
+            appendMessage(parseMarkdown(data.reply || 'Maaf, terjadi kesalahan.'), false);
         } catch (e) {
             removeTyping();
             appendMessage('Terjadi kesalahan koneksi. Silakan coba lagi.', false);
