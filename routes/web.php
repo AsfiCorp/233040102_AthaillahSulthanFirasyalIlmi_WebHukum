@@ -26,7 +26,9 @@ Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::post('/contact', [ContactController::class, 'submit'])
+    ->name('contact.submit')
+    ->middleware('throttle:10,1');
 
 // Chatbot API
 Route::post('/chatbot', [ChatbotController::class, 'chat'])
