@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdvocateController as AdminAdvocateController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\AdvocateController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Middleware\CheckAdminPanelAccess;
 use Illuminate\Support\Facades\Route;
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -57,13 +59,14 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->midd
 // Admin Routes (auth-protected)
 // ──────────────────────────────────────────────────────────────────────────────
 
-Route::middleware(['auth', \App\Http\Middleware\CheckAdminPanelAccess::class])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', CheckAdminPanelAccess::class])->prefix('admin')->name('admin.')->group(function () {
 
+    Route::get('/dashboard/report', [DashboardController::class, 'report'])->name('dashboard.report');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // UI Settings
-    Route::get('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings.index');
-    Route::put('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
 
     // Advocate CRUD
     Route::get('/advocates', [AdminAdvocateController::class, 'index'])->name('advocates.index');

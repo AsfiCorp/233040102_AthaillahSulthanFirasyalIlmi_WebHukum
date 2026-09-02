@@ -5,6 +5,18 @@
 
 @section('content')
 
+{{-- Header Actions --}}
+<div class="flex items-center justify-between mb-8">
+    <h1 style="font-family:'Playfair Display',serif; font-size:32px; font-weight:600; color:#e1e3e4;">Dashboard Overview</h1>
+    <a href="{{ route('admin.dashboard.report') }}"
+       class="flex items-center gap-2 px-4 py-2 font-bold transition-colors shadow-lg"
+       style="background:#e9c349; color:#0b132b; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; border-radius:4px;"
+       onmouseover="this.style.background='#ffe088'" onmouseout="this.style.background='#e9c349'">
+        <span class="material-symbols-outlined" style="font-size:18px;">picture_as_pdf</span>
+        Download PDF Report
+    </a>
+</div>
+
 {{-- Stats Row --}}
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     <div class="p-6 flex flex-col gap-3 relative overflow-hidden group transition-all duration-300"
