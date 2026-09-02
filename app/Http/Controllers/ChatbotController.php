@@ -27,7 +27,7 @@ class ChatbotController extends Controller
 
         try {
             $response = Http::timeout(30)->post(
-                "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$apiKey}",
+                "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key={$apiKey}",
                 [
                     'system_instruction' => [
                         'parts' => [
@@ -47,7 +47,7 @@ class ChatbotController extends Controller
                     ],
                     'generationConfig' => [
                         'temperature' => 0.7,
-                        'maxOutputTokens' => 512,
+                        'maxOutputTokens' => 4096,
                     ],
                 ]
             );
