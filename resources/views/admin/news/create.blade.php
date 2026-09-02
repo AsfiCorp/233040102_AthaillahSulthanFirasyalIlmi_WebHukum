@@ -38,18 +38,16 @@
                 <label style="display:block; font-size:12px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase; color:#c6c6ce; margin-bottom:8px;">Article Type *</label>
                 <div class="flex gap-4">
                     @foreach(['internal' => 'Internal Article', 'external' => 'External Source'] as $val => $label)
-                    <label class="flex items-center gap-3 cursor-pointer px-4 py-3 transition-all"
+                    <label id="label-type-{{ $val }}" class="type-label flex items-center gap-3 cursor-pointer px-4 py-3 transition-all"
                            style="border:1px solid {{ old('type', 'internal') === $val ? '#e9c349' : 'rgba(69,70,77,0.3)' }};">
                         <input type="radio" name="type" value="{{ $val }}" class="hidden type-radio"
                                {{ old('type', 'internal') === $val ? 'checked' : '' }}
-                               onchange="toggleExternalUrl()">
-                        <span class="w-4 h-4 rounded-full border-2 flex items-center justify-center"
-                              style="border-color:#e9c349;">
-                            @if(old('type', 'internal') === $val)
-                            <span class="w-2 h-2 rounded-full" style="background:#e9c349;"></span>
-                            @endif
+                               onchange="updateTypeUI()">
+                        <span id="circle-type-{{ $val }}" class="type-circle w-4 h-4 rounded-full border-2 flex items-center justify-center"
+                              style="border-color:{{ old('type', 'internal') === $val ? '#e9c349' : 'rgba(69,70,77,0.5)' }};">
+                            <span id="dot-type-{{ $val }}" class="type-dot w-2 h-2 rounded-full" style="background:{{ old('type', 'internal') === $val ? '#e9c349' : 'transparent' }};"></span>
                         </span>
-                        <span style="font-size:14px; color:#e1e3e4; font-weight:{{ old('type', 'internal') === $val ? '600' : '400' }}">{{ $label }}</span>
+                        <span id="text-type-{{ $val }}" class="type-text" style="font-size:14px; color:#e1e3e4; font-weight:{{ old('type', 'internal') === $val ? '600' : '400' }}">{{ $label }}</span>
                     </label>
                     @endforeach
                 </div>
@@ -105,10 +103,48 @@
 
 @push('scripts')
 <script>
-function toggleExternalUrl() {
+function updateTypeUI() {
     const isExternal = document.querySelector('.type-radio:checked').value === 'external';
-    document.getElementById('external-url-group').style.display = isExternal ? '' : 'none';
-    document.getElementById('content-group').style.display = isExternal ? 'none' : '';
+
+    // Update UI elements for Internal
+    const internalLabel = document.getElementById('label-type-internal');
+    const internalCircle = document.getElementById('circle-type-internal');
+    const internalDot = document.getElementById('dot-type-internal');
+    const internalText = document.getElementById('text-type-internal');
+
+    // Update UI elements for External
+    const externalLabel = document.getElementById('label-type-external');
+    const externalCircle = document.getElementById('circle-type-external');
+    const externalDot = document.getElementById('dot-type-external');
+    const externalText = document.getElementById('text-type-external');
+
+    if (isExternal) {
+        externalLabel.style.borderColor = '#e9c349';
+        externalCircle.style.borderColor = '#e9c349';
+        externalDot.style.background = '#e9c349';
+        externalText.style.fontWeight = '600';
+
+        internalLabel.style.borderColor = 'rgba(69,70,77,0.3)';
+        internalCircle.style.borderColor = 'rgba(69,70,77,0.5)';
+        internalDot.style.background = 'transparent';
+        internalText.style.fontWeight = '400';
+
+        document.getElementById('external-url-group').style.display = '';
+        document.getElementById('content-group').style.display = 'none';
+    } else {
+        internalLabel.style.borderColor = '#e9c349';
+        internalCircle.style.borderColor = '#e9c349';
+        internalDot.style.background = '#e9c349';
+        internalText.style.fontWeight = '600';
+
+        externalLabel.style.borderColor = 'rgba(69,70,77,0.3)';
+        externalCircle.style.borderColor = 'rgba(69,70,77,0.5)';
+        externalDot.style.background = 'transparent';
+        externalText.style.fontWeight = '400';
+
+        document.getElementById('external-url-group').style.display = 'none';
+        document.getElementById('content-group').style.display = '';
+    }
 }
 function previewImage(input) {
     const preview = document.getElementById('image-preview');

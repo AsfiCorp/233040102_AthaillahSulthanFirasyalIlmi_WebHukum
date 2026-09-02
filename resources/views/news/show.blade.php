@@ -18,11 +18,15 @@
             </a>
 
             @if($news->image_path)
-            <div class="relative overflow-hidden group mb-12" style="width:100%; aspect-ratio:21/9;">
+            <div class="relative overflow-hidden group mb-12" style="width:100%; aspect-ratio:21/9; background:#111415;">
                 <img src="{{ asset('storage/'.$news->image_path) }}" alt="{{ $news->title }}"
                      class="w-full h-full object-cover transition-transform duration-700"
                      onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                 <div class="absolute inset-0" style="border:1px solid rgba(233,195,73,0.2); pointer-events:none;"></div>
+            </div>
+            @else
+            <div class="relative overflow-hidden group mb-12 flex items-center justify-center" style="width:100%; aspect-ratio:21/9; background:linear-gradient(135deg,#1d2021,#282a2b); border:1px solid rgba(233,195,73,0.2);">
+                <span class="material-symbols-outlined" style="font-size:80px; color:rgba(69,70,77,0.5);">newspaper</span>
             </div>
             @endif
         </div>
@@ -32,7 +36,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
                 {{-- Article --}}
-                <article class="lg:col-span-8" style="padding-right:0;">
+                <article class="lg:col-span-8 overflow-hidden" style="padding-right:0;">
 
                     <header class="mb-12 pb-8" style="border-bottom:1px solid rgba(233,195,73,0.2);">
                         <div class="flex items-center gap-4 mb-6" style="font-size:12px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase; color:rgba(225,227,228,0.6);">
@@ -43,22 +47,20 @@
                             <span>{{ $news->isExternal() ? 'External' : 'Firm News' }}</span>
                         </div>
 
-                        <h1 style="font-family:'Playfair Display',serif; font-size:clamp(32px,5vw,64px); line-height:1.1; font-weight:700; color:#e9c349; margin-bottom:24px;">
+                        <h1 class="break-words" style="font-family:'Playfair Display',serif; font-size:clamp(32px,5vw,64px); line-height:1.1; font-weight:700; color:#e9c349; margin-bottom:24px; word-wrap:break-word;">
                             {{ $news->title }}
                         </h1>
-
-                        <p style="font-size:18px; line-height:28px; color:rgba(225,227,228,0.8); max-width:768px;">
-                            {{ Str::limit(strip_tags($news->content), 200) }}
-                        </p>
                     </header>
 
                     {{-- Article Body --}}
-                    <div class="article-content">
-                        @foreach(explode("\n\n", $news->content ?? '') as $para)
+                    <div class="article-content" style="color:rgba(225,227,228,0.9); font-size:18px; line-height:1.8; word-wrap:break-word; overflow-wrap:break-word; word-break:break-word;">
+                        @foreach(explode("\n", str_replace("\r", "", $news->content ?? '')) as $para)
                             @if(str_starts_with(trim($para), '#'))
-                                <h2>{{ ltrim($para, '# ') }}</h2>
-                            @elseif(!empty(trim($para)))
-                                <p>{{ $para }}</p>
+                                <h2 style="font-family:'Playfair Display',serif; font-size:28px; color:#e1e3e4; margin-top:32px; margin-bottom:16px;">{{ ltrim($para, '# ') }}</h2>
+                            @elseif(trim($para) === '')
+                                <br>
+                            @else
+                                <p style="margin-bottom:16px;">{{ $para }}</p>
                             @endif
                         @endforeach
                     </div>
