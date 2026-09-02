@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Us - D'MAHESA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#e1e3e4",
+                        "secondary-fixed-dim": "#e9c349",
+                        "on-tertiary-container": "#757e9f",
+                        "surface-container": "#1d2021",
+                        "surface-container-low": "#191c1d",
+                        "outline": "#909098",
+                        "secondary-fixed": "#ffe088",
+                        "on-tertiary-fixed": "#111a36",
+                        "surface-tint": "#bec5e5",
+                        "tertiary-fixed-dim": "#bdc5e9",
+                        "inverse-primary": "#565d79",
+                        "on-secondary": "#3c2f00",
+                        "surface-container-lowest": "#0c0f10",
+                        "secondary-container": "#af8d11",
+                        "on-primary-container": "#767e9b",
+                        "background": "#111415",
+                        "tertiary-container": "#09132e",
+                        "surface-container-high": "#282a2b",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#3d4664",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#bec5e5",
+                        "on-secondary-container": "#342800",
+                        "tertiary-fixed": "#dbe1ff",
+                        "tertiary": "#bdc5e9",
+                        "surface-dim": "#111415",
+                        "on-secondary-fixed": "#241a00",
+                        "on-secondary-fixed-variant": "#574500",
+                        "primary": "#bec5e5",
+                        "secondary": "#e9c349",
+                        "surface-container-highest": "#323536",
+                        "surface-bright": "#373a3b",
+                        "on-error-container": "#ffdad6",
+                        "on-surface": "#e1e3e4",
+                        "primary-fixed": "#dbe1ff",
+                        "on-surface-variant": "#c6c6ce",
+                        "surface": "#111415",
+                        "on-primary-fixed": "#131a33",
+                        "inverse-surface": "#e1e3e4",
+                        "on-primary-fixed-variant": "#3e4660",
+                        "on-primary": "#282f49",
+                        "surface-variant": "#323536",
+                        "primary-container": "#0b132b",
+                        "error": "#ffb4ab",
+                        "outline-variant": "#45464d",
+                        "on-tertiary": "#262f4c",
+                        "inverse-on-surface": "#2e3132"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "margin-mobile": "20px",
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "headline-lg": ["40px", { "lineHeight": "48px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0B132B; /* Base background from Style Guidance */
+            color: #e1e3e4;
+        }
+        .bg-level-1 {
+            background-color: #1C2541; /* Level 1 card surface */
+        }
+        .border-accent {
+            border-color: rgba(233, 195, 73, 0.3); /* Gold accent */
+        }
+        .input-border-focus {
+            border-bottom: 1px solid #45464d; /* Muted Navy */
+            transition: border-color 0.3s ease;
+        }
+        .input-border-focus:focus {
+            border-bottom-color: #e9c349; /* Gold on focus */
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body class="font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-secondary/20 shadow-sm transition-all duration-300 ease-in-out">
+<div class="max-w-container-max mx-auto px-gutter flex justify-between items-center h-20">
+<div class="font-display-lg text-headline-md tracking-tighter text-on-surface dark:text-on-surface">
+                D'MAHESA
+            </div>
+<div class="hidden md:flex gap-8 items-center font-label-caps text-label-caps uppercase tracking-widest">
+<a class="text-on-surface/70 hover:text-secondary transition-colors duration-300" href="#">Practice Areas</a>
+<a class="text-on-surface/70 hover:text-secondary transition-colors duration-300" href="#">Our Attorneys</a>
+<a class="text-on-surface/70 hover:text-secondary transition-colors duration-300" href="#">Insights</a>
+<a class="text-on-surface/70 hover:text-secondary transition-colors duration-300" href="#">Case Studies</a>
+<a class="text-on-surface/70 hover:text-secondary transition-colors duration-300" href="#">About</a>
+</div>
+<div class="hidden md:flex">
+<button class="bg-secondary text-on-secondary font-label-caps text-label-caps uppercase tracking-widest px-6 py-3 hover:bg-secondary-fixed transition-colors duration-300">
+                    WhatsApp Consultation
+                </button>
+</div>
+<button class="md:hidden text-secondary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-32 pb-section-gap px-margin-mobile md:px-gutter max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-20 md:w-8/12">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6">Contact Us</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                Schedule a confidential consultation with our legal experts. We represent high-net-worth individuals and corporate entities with uncompromising expertise.
+            </p>
+</div>
+<!-- Bento Grid Layout for Contact -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Contact Form Area (8 columns) -->
+<div class="md:col-span-8 bg-level-1 p-8 md:p-12 border border-accent relative overflow-hidden group">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-8">Submit Inquiry</h2>
+<form action="#" class="space-y-8" method="POST">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col">
+<label class="font-label-caps text-label-caps text-on-surface-variant mb-2" for="full_name">Full Name</label>
+<input class="bg-transparent border-0 border-b border-outline-variant/50 input-border-focus text-on-surface px-0 py-2" id="full_name" name="full_name" required="" type="text"/>
+</div>
+<div class="flex flex-col">
+<label class="font-label-caps text-label-caps text-on-surface-variant mb-2" for="email">Email Address</label>
+<input class="bg-transparent border-0 border-b border-outline-variant/50 input-border-focus text-on-surface px-0 py-2" id="email" name="email" required="" type="email"/>
+</div>
+</div>
+<div class="flex flex-col">
+<label class="font-label-caps text-label-caps text-on-surface-variant mb-2" for="phone">Phone Number</label>
+<input class="bg-transparent border-0 border-b border-outline-variant/50 input-border-focus text-on-surface px-0 py-2" id="phone" name="phone" type="tel"/>
+</div>
+<div class="flex flex-col">
+<label class="font-label-caps text-label-caps text-on-surface-variant mb-2" for="matter_summary">Matter Summary</label>
+<textarea class="bg-transparent border-0 border-b border-outline-variant/50 input-border-focus text-on-surface px-0 py-2 resize-none" id="matter_summary" name="matter_summary" required="" rows="4"></textarea>
+</div>
+<div class="pt-4">
+<button class="bg-secondary text-on-secondary font-label-caps text-label-caps uppercase tracking-widest px-8 py-4 hover:bg-secondary-fixed transition-colors duration-300 inline-flex items-center gap-2" type="submit">
+                            Submit Inquiry
+                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+<!-- WhatsApp & Direct Contact Area (4 columns) -->
+<div class="md:col-span-4 flex flex-col gap-8">
+<!-- WhatsApp Card -->
+<div class="bg-level-1 p-8 border border-accent h-full flex flex-col justify-center">
+<div class="mb-6">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4" data-icon="chat" style="font-variation-settings: 'FILL' 1;">chat</span>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Instant Support</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Connect directly with our client relations team via WhatsApp for immediate assistance.</p>
+</div>
+<a class="border border-secondary text-secondary font-label-caps text-label-caps uppercase tracking-widest px-6 py-4 hover:bg-secondary/10 transition-colors duration-300 text-center flex items-center justify-center gap-2 mt-auto" href="#">
+                        Chat on WhatsApp
+                        <span class="material-symbols-outlined" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full pt-section-gap pb-10 bg-surface-dim dark:bg-surface-dim border-t border-outline-variant/30">
+<div class="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="md:col-span-1">
+<div class="font-display-lg text-headline-lg text-secondary mb-4">
+                    D'MAHESA
+                </div>
+</div>
+<div class="md:col-span-3 flex flex-col md:flex-row justify-end items-start md:items-center gap-6 font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Disclosures</a>
+<a class="text-secondary hover:text-secondary transition-colors duration-300" href="#">Contact Us</a>
+</div>
+<div class="md:col-span-4 mt-12 pt-8 border-t border-outline-variant/10 text-on-surface-variant font-body-md text-body-md text-sm">
+                © 2024 D'Mahesa Legal Group. All Rights Reserved.
+            </div>
+</div>
+</footer>
+</body></html>

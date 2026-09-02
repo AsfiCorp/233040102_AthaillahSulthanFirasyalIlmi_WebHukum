@@ -4,6 +4,168 @@
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* ── Typography ─────────────────────────────────── */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Playfair Display', ui-serif, Georgia, serif;
+
+    /* ── D'Mahesa Color Palette ─────────────────────── */
+    --color-background:              #111415;
+    --color-surface:                 #111415;
+    --color-surface-dim:             #111415;
+    --color-surface-bright:          #373a3b;
+    --color-surface-container:       #1d2021;
+    --color-surface-container-low:   #191c1d;
+    --color-surface-container-high:  #282a2b;
+    --color-surface-container-highest: #323536;
+    --color-surface-container-lowest:  #0c0f10;
+    --color-surface-variant:         #323536;
+
+    --color-primary:                 #bec5e5;
+    --color-primary-container:       #0b132b;
+    --color-primary-fixed:           #dbe1ff;
+    --color-primary-fixed-dim:       #bec5e5;
+    --color-inverse-primary:         #565d79;
+    --color-on-primary:              #282f49;
+    --color-on-primary-container:    #767e9b;
+    --color-on-primary-fixed:        #131a33;
+    --color-on-primary-fixed-variant:#3e4660;
+
+    --color-secondary:               #e9c349;
+    --color-secondary-container:     #af8d11;
+    --color-secondary-fixed:         #ffe088;
+    --color-secondary-fixed-dim:     #e9c349;
+    --color-on-secondary:            #3c2f00;
+    --color-on-secondary-container:  #342800;
+    --color-on-secondary-fixed:      #241a00;
+    --color-on-secondary-fixed-variant: #574500;
+
+    --color-tertiary:                #bdc5e9;
+    --color-tertiary-container:      #09132e;
+    --color-tertiary-fixed:          #dbe1ff;
+    --color-tertiary-fixed-dim:      #bdc5e9;
+    --color-on-tertiary:             #262f4c;
+    --color-on-tertiary-container:   #757e9f;
+    --color-on-tertiary-fixed:       #111a36;
+    --color-on-tertiary-fixed-variant:#3d4664;
+
+    --color-error:                   #ffb4ab;
+    --color-error-container:         #93000a;
+    --color-on-error:                #690005;
+    --color-on-error-container:      #ffdad6;
+
+    --color-on-background:           #e1e3e4;
+    --color-on-surface:              #e1e3e4;
+    --color-on-surface-variant:      #c6c6ce;
+    --color-outline:                 #909098;
+    --color-outline-variant:         #45464d;
+    --color-inverse-surface:         #e1e3e4;
+    --color-inverse-on-surface:      #2e3132;
+    --color-surface-tint:            #bec5e5;
+
+    /* ── Spacing tokens ─────────────────────────────── */
+    --spacing-gutter:         32px;
+    --spacing-unit:           8px;
+    --spacing-container-max:  1280px;
+    --spacing-margin-mobile:  20px;
+    --spacing-section-gap:    120px;
+
+    /* ── Border Radius ──────────────────────────────── */
+    --radius-DEFAULT: 0.25rem;
+    --radius-lg:      0.5rem;
+    --radius-xl:      0.75rem;
+    --radius-full:    9999px;
+}
+
+/* ── Utility classes ─────────────────────────────────── */
+@layer utilities {
+    .text-gradient {
+        background-image: linear-gradient(to right, #e9c349, #ffe088);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .text-metallic-gold {
+        background: linear-gradient(to right, #ffe088, #af8d11);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .glass-panel {
+        background: rgba(11, 19, 43, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(233, 195, 73, 0.2);
+    }
+
+    .bg-level-1 {
+        background-color: #1C2541;
+    }
+
+    .border-accent {
+        border-color: rgba(233, 195, 73, 0.3);
+    }
+
+    .slide-border {
+        transition: width 0.3s ease-in-out;
+        width: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .group:hover .slide-border {
+        width: 100%;
+    }
+}
+
+/* ── Material Symbols ────────────────────────────────── */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ── Article content typography ──────────────────────── */
+.article-content p {
+    margin-bottom: 1.5rem;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(225, 227, 228, 0.9);
+}
+.article-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    color: #e9c349;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+.article-content blockquote {
+    border-left: 2px solid #e9c349;
+    padding-left: 1.5rem;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgba(225, 227, 228, 0.8);
+    margin: 2rem 0;
+}
+
+/* ── Autofill dark theme ─────────────────────────────── */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #1C2541 inset !important;
+    -webkit-text-fill-color: #e1e3e4 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ── Input underline focus ───────────────────────────── */
+.input-border-focus {
+    border-bottom: 1px solid #45464d;
+    transition: border-color 0.3s ease;
+}
+.input-border-focus:focus {
+    border-bottom-color: #e9c349;
+    outline: none;
+    box-shadow: none;
 }

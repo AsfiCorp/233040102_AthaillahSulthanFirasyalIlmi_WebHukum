@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard | D'Mahesa Law Firm</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#131a33",
+                    "inverse-on-surface": "#2e3132",
+                    "on-error": "#690005",
+                    "primary-container": "#0b132b",
+                    "tertiary": "#bdc5e9",
+                    "secondary-fixed-dim": "#e9c349",
+                    "surface-tint": "#bec5e5",
+                    "on-tertiary": "#262f4c",
+                    "on-secondary": "#3c2f00",
+                    "primary-fixed": "#dbe1ff",
+                    "on-secondary-fixed-variant": "#574500",
+                    "inverse-surface": "#e1e3e4",
+                    "on-primary-fixed-variant": "#3e4660",
+                    "outline-variant": "#45464d",
+                    "on-background": "#e1e3e4",
+                    "on-tertiary-fixed-variant": "#3d4664",
+                    "on-tertiary-fixed": "#111a36",
+                    "surface-bright": "#373a3b",
+                    "error": "#ffb4ab",
+                    "surface-container": "#1d2021",
+                    "on-surface-variant": "#c6c6ce",
+                    "on-secondary-container": "#342800",
+                    "outline": "#909098",
+                    "primary-fixed-dim": "#bec5e5",
+                    "surface-container-highest": "#323536",
+                    "on-tertiary-container": "#757e9f",
+                    "surface-container-lowest": "#0c0f10",
+                    "inverse-primary": "#565d79",
+                    "background": "#111415",
+                    "surface-dim": "#111415",
+                    "tertiary-container": "#09132e",
+                    "surface-container-low": "#191c1d",
+                    "primary": "#bec5e5",
+                    "on-surface": "#e1e3e4",
+                    "tertiary-fixed": "#dbe1ff",
+                    "on-primary-container": "#767e9b",
+                    "on-secondary-fixed": "#241a00",
+                    "on-error-container": "#ffdad6",
+                    "error-container": "#93000a",
+                    "surface": "#111415",
+                    "tertiary-fixed-dim": "#bdc5e9",
+                    "secondary-container": "#af8d11",
+                    "surface-container-high": "#282a2b",
+                    "on-primary": "#282f49",
+                    "surface-variant": "#323536",
+                    "secondary": "#e9c349",
+                    "secondary-fixed": "#ffe088"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "gutter": "32px",
+                    "section-gap": "120px",
+                    "margin-mobile": "20px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "display-lg": [
+                            "Playfair Display"
+                    ],
+                    "headline-lg": [
+                            "Playfair Display"
+                    ],
+                    "headline-md": [
+                            "Playfair Display"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "display-lg-mobile": [
+                            "Playfair Display"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "display-lg": [
+                            "64px",
+                            {
+                                    "lineHeight": "72px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "40px",
+                            {
+                                    "lineHeight": "48px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "40px",
+                            {
+                                    "lineHeight": "48px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+        },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<nav class="bg-primary-container border-r border-secondary/10 shadow-[-30px_0_30px_rgba(5,8,18,0.2)] h-screen w-64 fixed left-0 top-0 flex flex-col h-full py-unit z-50">
+<!-- Header -->
+<div class="px-6 py-8 border-b border-secondary/10 mb-6">
+<h1 class="font-headline-md text-headline-md font-bold text-secondary">LawFirm Admin</h1>
+<p class="font-body-md text-body-md text-on-primary-container mt-2">Prestige Legal Group</p>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex-1 flex flex-col gap-2">
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-3 text-secondary border-r-2 border-secondary font-bold transition-all duration-200 active:scale-95 bg-secondary/5" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard Overview</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:text-secondary hover:bg-secondary/5 transition-colors transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Landing Page Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:text-secondary hover:bg-secondary/5 transition-colors transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined">gavel</span>
+<span class="font-label-caps text-label-caps">Manage Advocates</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:text-secondary hover:bg-secondary/5 transition-colors transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined">newspaper</span>
+<span class="font-label-caps text-label-caps">Manage News</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary-container hover:text-secondary hover:bg-secondary/5 transition-colors transition-all duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined">mail</span>
+<span class="font-label-caps text-label-caps">Consultations Inbox</span>
+</a>
+</div>
+<!-- Footer / CTA -->
+<div class="mt-auto px-4 py-6 border-t border-secondary/10 flex flex-col gap-4">
+<button class="w-full bg-secondary text-on-secondary font-label-caps text-label-caps uppercase font-bold py-3 transition-colors hover:bg-secondary-fixed">
+                View Website
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 text-error hover:text-error/80 hover:bg-error/10 transition-colors transition-all duration-200 active:scale-95 rounded-DEFAULT" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-caps text-label-caps">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="ml-64 w-[calc(100%-16rem)] min-h-screen relative flex flex-col">
+<!-- TopAppBar (Shared Component) -->
+<header class="bg-surface/80 backdrop-blur-md border-b border-secondary/20 fixed top-0 right-0 w-[calc(100%-16rem)] z-40 flex justify-between items-center h-16 px-gutter transition-all duration-200">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md font-bold text-secondary">Admin Portal</h2>
+</div>
+<div class="flex items-center gap-6">
+<!-- Search (on_right) -->
+<div class="relative group hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-secondary transition-colors">search</span>
+<input class="bg-transparent border-b border-outline-variant focus:border-secondary focus:outline-none pl-10 pr-4 py-2 font-body-md text-on-surface transition-colors w-64 placeholder:text-on-surface-variant" placeholder="Search..." type="text"/>
+</div>
+<!-- Trailing Actions -->
+<button class="text-on-surface-variant hover:text-secondary transition-colors transition-all duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-secondary transition-colors transition-all duration-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+<!-- Profile -->
+<div class="w-10 h-10 rounded-full border border-secondary/20 overflow-hidden ml-4">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A sleek, minimalist digital icon representing a system administrator, featuring sharp geometric lines and a subtle metallic gold finish on a dark navy, softly textured background, conveying high-level access and security." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl3UOG-nVPvuiiK-EtSDrwv4Xm-XcWF8oM7QkKGXz6M1WPo56dFJJ7Tt86eGbcITF-oBe01bJciTW8E-n2d9pSnwQStWgr9V9z_3Gu7S84mT6CUeTpddQ_-wh5d6MFpPL7zIJfTMOb9sCb_xdQ18IacEhqtd_jW5nsvljLa3oyccqHD9Ker690OZtckJnnNjYw05q2PxeH-SLpX_flzVW9XT0FkEbmjrWI8xRYKKZD5RcXPHDhQtQJtQ"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas (Scrollable) -->
+<main class="pt-24 px-gutter pb-section-gap flex-1 flex flex-col gap-12">
+<!-- Dashboard Title -->
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">Master Command Center</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage firm operations, digital presence, and communications.</p>
+</div>
+<!-- Bento Grid Structure -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Section A: Manage News Interface (Span 12 for row, internal split 8/4) -->
+<div class="col-span-12 grid grid-cols-12 gap-8">
+<!-- Data Table (Span 8) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container border border-outline-variant/30 p-8 flex flex-col gap-6">
+<div class="flex justify-between items-center border-b border-outline-variant/30 pb-4">
+<h3 class="font-headline-md text-headline-md text-secondary">Firm Publications</h3>
+<span class="material-symbols-outlined text-secondary">newspaper</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/50">
+<th class="py-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Cover</th>
+<th class="py-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Title</th>
+<th class="py-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Type</th>
+<th class="py-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Date</th>
+<th class="py-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-right">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-outline-variant/20 hover:bg-surface-highest transition-colors group">
+<td class="py-4">
+<div class="w-16 h-12 bg-surface overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A sophisticated black and white photograph of a wooden gavel resting on a polished desk, dramatically lit by a single spotlight against a deep, dark navy background, evoking corporate prestige." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn7-4AvR6-I36Z-Wyhiz599af-yNomhz_cUbK1H2z-tCBBIpcYhQ_QUAQKlQH552leBzWknSe8dQJtvS_nOfVbeAzCrhkSRyaVz5Ke1SMXdoqEDsdchuYzPf7kp2X8JncLF4e4DbR1ZUnl_f24tJmFJ0QyKlCWN2C_KnB9wiAGNQMpyhFewsukdZtMt7OUIS4NzF5OpIrsKAp21-zw4l2N2N-x0M2a5KHxBjwSQugUCtY3L36EHTxTNA"/>
+</div>
+</td>
+<td class="py-4 font-body-md text-on-surface font-semibold">Corporate Mergers Q3 Analysis</td>
+<td class="py-4 font-label-caps text-label-caps text-secondary">Firm News</td>
+<td class="py-4 font-body-md text-on-surface-variant">Oct 24, 2023</td>
+<td class="py-4 text-right">
+<button class="text-on-surface-variant hover:text-secondary mx-2 transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="text-on-surface-variant hover:text-error mx-2 transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant/20 hover:bg-surface-highest transition-colors group">
+<td class="py-4">
+<div class="w-16 h-12 bg-surface overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist, high-contrast image of a modern, sleek corporate building facade reflected in glass, rendered in deep indigo and stark white tones, emphasizing structural stability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz-y8e_rlSXSRV-7oUlGp-UmWfHouNoEjR3uO9TKNQ-1RmyYiFRKkslcsg0GDIDgZiwqvkQKI8w-0O95AtIljPcTzP8-eKROEXa66bqL_TegqDUCQE1pHCoJM9-q5qiujNqvr6tTnaBSVo0ravy0LV2C5y2_iZsby7NLlPrTtE7QVbsRQy7a6Sflmf_mFoQXE3LAIFIel47Gr8ZlCB8Mq7j7eToUtJAp_MYtr-uTV2e-5hzCJvGTxlcg"/>
+</div>
+</td>
+<td class="py-4 font-body-md text-on-surface font-semibold">International Arbitration Updates</td>
+<td class="py-4 font-label-caps text-label-caps text-tertiary">External Link</td>
+<td class="py-4 font-body-md text-on-surface-variant">Oct 18, 2023</td>
+<td class="py-4 text-right">
+<button class="text-on-surface-variant hover:text-secondary mx-2 transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="text-on-surface-variant hover:text-error mx-2 transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Create Form (Span 4) -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container border border-outline-variant/30 p-8 flex flex-col gap-6 relative overflow-hidden">
+<!-- Decorative Accent -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-bl-full blur-2xl pointer-events-none"></div>
+<h3 class="font-headline-md text-headline-md text-secondary border-b border-outline-variant/30 pb-4">Publish News</h3>
+<form class="flex flex-col gap-6 mt-2">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Article Title</label>
+<input class="bg-transparent border-b border-outline-variant focus:border-secondary focus:outline-none py-2 font-body-md text-on-surface transition-colors" placeholder="Enter headline..." type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Cover Image</label>
+<div class="border border-dashed border-outline-variant/50 p-4 text-center hover:border-secondary transition-colors cursor-pointer flex flex-col items-center justify-center gap-2 text-on-surface-variant hover:text-secondary">
+<span class="material-symbols-outlined">upload_file</span>
+<span class="font-label-caps text-label-caps">Select File</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Publication Type</label>
+<select class="bg-surface-container border-b border-outline-variant focus:border-secondary focus:outline-none py-2 font-body-md text-on-surface transition-colors appearance-none cursor-pointer">
+<option>Write Internal Article</option>
+<option>External Link</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Content / Excerpt</label>
+<textarea class="bg-transparent border-b border-outline-variant focus:border-secondary focus:outline-none py-2 font-body-md text-on-surface transition-colors resize-none" placeholder="Draft content..." rows="3"></textarea>
+</div>
+<button class="mt-4 bg-secondary text-on-secondary font-label-caps text-label-caps uppercase font-bold py-4 hover:bg-secondary-fixed transition-colors flex justify-center items-center gap-2" type="button">
+                                Publish News <span class="material-symbols-outlined text-sm">send</span>
+</button>
+</form>
+</div>
+</div>
+<!-- Section B: Landing Page & Advocates (Split 6/6) -->
+<div class="col-span-12 grid grid-cols-12 gap-8">
+<!-- Landing Page Control (Span 6) -->
+<div class="col-span-12 lg:col-span-6 bg-surface-container border border-outline-variant/30 p-8 flex flex-col gap-6">
+<div class="flex justify-between items-center border-b border-outline-variant/30 pb-4">
+<h3 class="font-headline-md text-headline-md text-secondary">Digital Presence</h3>
+<span class="material-symbols-outlined text-secondary">web</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-4">Control the primary messaging displayed on the public firm index.</p>
+<form class="flex flex-col gap-8 flex-1">
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase flex items-center gap-2">
+                                    Hero Tagline <span class="material-symbols-outlined text-[14px] text-secondary">star</span>
+</label>
+<input class="bg-transparent border-b border-outline-variant focus:border-secondary focus:outline-none py-2 font-headline-md text-headline-md text-on-surface transition-colors" type="text" value="Uncompromising Legal Excellence."/>
+</div>
+<div class="flex flex-col gap-2 flex-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Firm Summary</label>
+<textarea class="bg-transparent border-b border-outline-variant focus:border-secondary focus:outline-none py-2 font-body-lg text-body-lg text-on-surface transition-colors resize-none leading-relaxed" rows="4">Providing high-end strategic counsel and resolute representation for complex corporate, financial, and private wealth matters globally.</textarea>
+</div>
+<div class="flex justify-end mt-auto">
+<button class="border border-secondary text-secondary font-label-caps text-label-caps uppercase font-bold py-3 px-8 hover:bg-secondary/10 transition-colors" type="button">
+                                    Save Changes
+                                </button>
+</div>
+</form>
+</div>
+<!-- Manage Advocates (Span 6) -->
+<div class="col-span-12 lg:col-span-6 bg-surface-container border border-outline-variant/30 p-8 flex flex-col gap-6">
+<div class="flex justify-between items-center border-b border-outline-variant/30 pb-4">
+<h3 class="font-headline-md text-headline-md text-secondary">Firm Advocates</h3>
+<span class="material-symbols-outlined text-secondary">gavel</span>
+</div>
+<!-- Advocates Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1 mt-2">
+<!-- Advocate Card 1 -->
+<div class="group border border-outline-variant/30 p-4 flex items-center gap-4 hover:border-secondary/50 transition-all cursor-pointer bg-surface/50 relative overflow-hidden">
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-secondary group-hover:w-full transition-all duration-300"></div>
+<div class="w-12 h-12 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover filter grayscale contrast-125" data-alt="A high-end, dramatic black and white portrait of a confident male corporate lawyer in a sharp suit, cinematic lighting, minimalist black background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBsq6FqCf2vkVRkMnz-9N7-QU0f7gfd8E7IrgGHYUo7VcjCDvSYSBJVd_L0IknGab8PTm9QewfiDB6jsvCuH86CvgFBshmalhKJ5d2EBRkFp5kCdcERQ5niVS1y67-gYcWSDhAgPp8i7hObM_2cmbJrlRT8yYLuzIzOj2ooODhdXDEnNYrhVfGueaUmHN9LoTtGm9KNs3IRt_4waGEpBQzXyFQ_JfHwQi_hD4DXlTakHMA72FLIenmTQ"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-on-surface font-semibold">Adam Hasan</span>
+<span class="font-label-caps text-label-caps text-secondary mt-1">Senior Partner</span>
+</div>
+<span class="material-symbols-outlined ml-auto text-on-surface-variant group-hover:text-secondary opacity-0 group-hover:opacity-100 transition-all">chevron_right</span>
+</div>
+<!-- Advocate Card 2 -->
+<div class="group border border-outline-variant/30 p-4 flex items-center gap-4 hover:border-secondary/50 transition-all cursor-pointer bg-surface/50 relative overflow-hidden">
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-secondary group-hover:w-full transition-all duration-300"></div>
+<div class="w-12 h-12 overflow-hidden shrink-0">
+<img class="w-full h-full object-cover filter grayscale contrast-125" data-alt="A striking, premium black and white portrait of a determined female senior partner in elegant attire, high-contrast rim lighting, velvety dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNIyWSd4_9TYD3wcEeN53ejqUG_zG3Wiu3vt11DmDslDa-xS1h8ALe4mlpr3-UClRYwuifF4rUBT76c5gUGgRI1cMxVmdljFDFoPPf9C4uz7QGVrX2pRJQnZ-EZncVQomAyGmlzSovqjIKVAGu9tL-lzdLCi223JFTEYsUKAp7ZRmz0bCezbeQpSoBa1D2lwJNZDoYo_E_nfEvqG8FZJe1q-jJMbaUaYDvnIQG4yrMH3jbFiUBy2-2rA"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-on-surface font-semibold">Herman Subekti</span>
+<span class="font-label-caps text-label-caps text-secondary mt-1">Managing Partner</span>
+</div>
+<span class="material-symbols-outlined ml-auto text-on-surface-variant group-hover:text-secondary opacity-0 group-hover:opacity-100 transition-all">chevron_right</span>
+</div>
+<!-- Empty Slot / Add more -->
+<div class="border border-dashed border-outline-variant/30 p-4 flex items-center justify-center gap-2 hover:border-secondary/50 transition-all cursor-pointer bg-surface/20 text-on-surface-variant hover:text-secondary col-span-1 md:col-span-2 py-8 mt-4">
+<span class="material-symbols-outlined">add</span>
+<span class="font-label-caps text-label-caps uppercase">Add New Advocate</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

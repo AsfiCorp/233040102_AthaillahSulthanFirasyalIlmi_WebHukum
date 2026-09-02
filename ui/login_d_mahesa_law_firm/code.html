@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login - D'Mahesa Law Firm</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#3c2f00",
+                        "background": "#111415",
+                        "on-primary-fixed": "#131a33",
+                        "secondary-fixed-dim": "#e9c349",
+                        "on-primary-fixed-variant": "#3e4660",
+                        "on-tertiary-fixed": "#111a36",
+                        "inverse-surface": "#e1e3e4",
+                        "surface-bright": "#373a3b",
+                        "on-secondary-fixed-variant": "#574500",
+                        "secondary": "#e9c349",
+                        "on-tertiary-container": "#757e9f",
+                        "tertiary-fixed": "#dbe1ff",
+                        "surface-variant": "#323536",
+                        "inverse-on-surface": "#2e3132",
+                        "on-background": "#e1e3e4",
+                        "tertiary-container": "#09132e",
+                        "on-surface-variant": "#c6c6ce",
+                        "surface-container-highest": "#323536",
+                        "surface-container": "#1d2021",
+                        "tertiary-fixed-dim": "#bdc5e9",
+                        "outline-variant": "#45464d",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-container-low": "#191c1d",
+                        "surface-container-lowest": "#0c0f10",
+                        "on-surface": "#e1e3e4",
+                        "secondary-container": "#af8d11",
+                        "outline": "#909098",
+                        "on-tertiary": "#262f4c",
+                        "primary-container": "#0b132b",
+                        "on-tertiary-fixed-variant": "#3d4664",
+                        "on-secondary-container": "#342800",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#767e9b",
+                        "surface-tint": "#bec5e5",
+                        "error-container": "#93000a",
+                        "primary": "#bec5e5",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary": "#282f49",
+                        "surface": "#111415",
+                        "inverse-primary": "#565d79",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-high": "#282a2b",
+                        "on-error": "#690005",
+                        "primary-fixed-dim": "#bec5e5",
+                        "tertiary": "#bdc5e9",
+                        "secondary-fixed": "#ffe088",
+                        "surface-dim": "#111415"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "32px",
+                        "section-gap": "120px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "fontWeight": "600"}],
+                        "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(11, 19, 43, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(233, 195, 73, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center relative overflow-hidden font-body-md text-body-md selection:bg-secondary selection:text-on-secondary">
+<!-- Background atmospheric graphic -->
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none" data-alt="A highly textured, abstract dark navy blue background resembling luxury silk or deep ocean waves, illuminated softly to reveal subtle depth and richness. The image is devoid of recognizable subjects, focusing entirely on a premium, elegant atmosphere suitable for a high-end corporate backdrop. It uses minimal lighting to maintain a predominantly dark, sophisticated aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB9qouA7Mc1xFUNAdKE4LpJuz3aZ1vgwJDqQ3GqDRRJcr1I7AGcARyAQaBEbFxR6Z9XkFixZD-XRmX4KMiJMazuH-V3AFeheoOd55Df6Q3_-8-03BKbUK93U63f7t6o3UUkoAXFlCEvnccOxjfB1u9BeL10xOIyFunjN59HI909vcnUdQQJobL7OCFQ1aLfm54eCsy8BqJBdwERdpX0aX5-MyGqFHu9EzIdSgqTRHQKlvGj2UerijtXPA')"></div>
+<div class="absolute inset-0 z-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none"></div>
+<!-- Login Container -->
+<main class="relative z-10 w-full max-w-[480px] px-margin-mobile md:px-0">
+<div class="glass-panel p-8 md:p-12 shadow-[0_30px_60px_-15px_rgba(5,8,18,0.5)]">
+<!-- Header -->
+<div class="text-center mb-10">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-secondary uppercase tracking-widest mb-4">
+                    D'Mahesa<br/><span class="text-headline-md font-headline-md tracking-normal opacity-80">Law Firm</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Welcome Back</p>
+</div>
+<!-- Form -->
+<form action="#" class="space-y-6" method="POST">
+<!-- Email -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant uppercase mb-2" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-50 pb-2">mail</span>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant/50 focus:border-secondary focus:ring-0 px-8 py-2 text-on-background placeholder:text-on-surface-variant/30 transition-colors" id="email" name="email" placeholder="attorney@dmahesa.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant uppercase mb-2" for="password">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-50 pb-2">lock</span>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant/50 focus:border-secondary focus:ring-0 px-8 py-2 text-on-background placeholder:text-on-surface-variant/30 transition-colors" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Remember & Forgot -->
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center">
+<input class="h-4 w-4 rounded-none border-outline-variant/50 bg-transparent text-secondary focus:ring-secondary focus:ring-offset-background cursor-pointer" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block text-sm text-on-surface-variant cursor-pointer" for="remember-me">Remember Me</label>
+</div>
+<div class="text-sm">
+<a class="font-medium text-secondary hover:text-secondary-fixed transition-colors" href="#">Forgot Password?</a>
+</div>
+</div>
+<!-- Sign In Button -->
+<div class="pt-4">
+<button class="w-full flex justify-center py-4 px-4 border border-transparent rounded-none shadow-sm font-label-caps text-label-caps text-on-secondary bg-secondary hover:bg-secondary-fixed uppercase transition-colors duration-300" type="submit">
+                        Sign In
+                    </button>
+</div>
+</form>
+<!-- Divider -->
+<div class="mt-8 relative">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/30"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-4 bg-[#111415] text-on-surface-variant font-label-caps text-label-caps uppercase">OR</span>
+</div>
+</div>
+<!-- Social Sign In -->
+<div class="mt-8">
+<a class="w-full inline-flex justify-center items-center py-3 px-4 border border-outline-variant/30 rounded-none bg-surface-bright text-on-surface hover:bg-inverse-surface hover:text-background transition-colors duration-300" href="/auth/google">
+<span class="mr-2 font-bold font-body-md text-body-md">G</span>
+<span class="font-label-caps text-label-caps uppercase">Sign in with Google</span>
+</a>
+</div>
+<!-- Register Link -->
+<p class="mt-10 text-center text-sm text-on-surface-variant">
+                Don't have an account? 
+                <a class="font-medium text-secondary hover:underline transition-all" href="/register.html">Register here</a>
+</p>
+</div>
+</main>
+</body></html>
