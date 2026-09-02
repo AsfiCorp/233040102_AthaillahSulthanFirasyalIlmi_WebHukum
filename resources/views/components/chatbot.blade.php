@@ -77,7 +77,6 @@
 
     // ── Gemini called directly from browser (avoids server timeout) ──
     const GEMINI_API_KEY = '{{ config("services.gemini.api_key") }}';
-    const GEMINI_MODELS  = ['gemini-3.6-flash', 'gemini-1.5-flash', 'gemini-1.5-pro'];
     const SYSTEM_PROMPT  = "Kamu adalah asisten hukum virtual dari D'Mahesa Law Firm, kantor hukum terkemuka di Indonesia. Jawab pertanyaan dengan profesional, ramah, dan dalam bahasa Indonesia. Berikan jawaban yang ringkas dan padat. Jika pertanyaan di luar bidang hukum, arahkan pengguna untuk berkonsultasi langsung dengan advokat kami.";
 
     function togglePanel() {
@@ -113,12 +112,12 @@
         messages.scrollTop = messages.scrollHeight;
     }
 
-    function appendTyping() {
+    function appendTyping(label) {
         const div = document.createElement('div');
         div.id = 'typing-indicator';
         div.className = 'flex gap-3';
         div.innerHTML = `<div class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style="background:#e9c349; color:#0b132b;"><span class="material-symbols-outlined" style="font-size:16px; font-variation-settings:'FILL' 1;">temp_preferences_custom</span></div>
-                         <div class="rounded-lg px-4 py-3 text-sm" style="background:rgba(11,19,43,0.8); color:#c6c6ce; border:1px solid rgba(233,195,73,0.1);">Sedang mengetik...</div>`;
+                         <div class="rounded-lg px-4 py-3 text-sm" style="background:rgba(11,19,43,0.8); color:#c6c6ce; border:1px solid rgba(233,195,73,0.1);">${label || 'Sedang mengetik...'}</div>`;
         messages.appendChild(div);
         messages.scrollTop = messages.scrollHeight;
     }
@@ -128,11 +127,19 @@
         if (t) { t.remove(); }
     }
 
-    async function callGemini(prompt, modelIndex) {
-        const model = GEMINI_MODELS[modelIndex];
-        const url   = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
+    function updateTypingLabel(label) {
+        const t = document.getElementById('typing-indicator');
+        if (t) { t.querySelector('div:last-child').textContent = label; }
+    }
 
-        const res = await fetch(url, {
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function callGemini(prompt, attempt) {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+        const res  = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -144,16 +151,19 @@
 
         const data = await res.json();
 
-        // If model is overloaded/unavailable and we have more fallbacks, try next
         if (data.error) {
-            const code = data.error.code;
-            const isOverloaded = code === 503 || code === 429 || code === 404 ||
-                                 (data.error.message || '').toLowerCase().includes('demand') ||
-                                 (data.error.message || '').toLowerCase().includes('overload');
+            const msg  = (data.error.message || '').toLowerCase();
+            const busy = data.error.code === 503 || data.error.code === 429 ||
+                         msg.includes('demand') || msg.includes('overload') || msg.includes('quota');
 
-            if (isOverloaded && modelIndex < GEMINI_MODELS.length - 1) {
-                return callGemini(prompt, modelIndex + 1);
+            // Retry up to 3 times with backoff if server is busy
+            if (busy && attempt < 3) {
+                const wait = [2000, 4000, 8000][attempt];
+                updateTypingLabel(`Server sibuk, mencoba ulang (${attempt + 1}/3)...`);
+                await sleep(wait);
+                return callGemini(prompt, attempt + 1);
             }
+
             throw new Error(data.error.message);
         }
 
@@ -161,7 +171,7 @@
             return data.candidates[0].content.parts[0].text;
         }
 
-        throw new Error('Respons tidak valid dari API.');
+        throw new Error('Respons tidak valid dari AI.');
     }
 
     async function sendMessage() {
@@ -170,7 +180,7 @@
 
         input.value = '';
         appendMessage(parseMarkdown(text), true);
-        appendTyping();
+        appendTyping('Sedang mengetik...');
         sendBtn.disabled = true;
 
         try {
@@ -179,10 +189,7 @@
             appendMessage(parseMarkdown(reply), false);
         } catch (e) {
             removeTyping();
-            const msg = e.message && e.message.length < 200
-                ? 'Maaf: ' + escapeHtml(e.message)
-                : 'Layanan AI sedang sibuk. Silakan coba lagi dalam beberapa saat.';
-            appendMessage(msg, false);
+            appendMessage('Layanan AI sedang sangat sibuk. Silakan coba beberapa saat lagi.', false);
         } finally {
             sendBtn.disabled = false;
             input.focus();
