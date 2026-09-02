@@ -64,6 +64,9 @@ Route::middleware(['auth', CheckAdminPanelAccess::class])->prefix('admin')->name
     Route::get('/dashboard/report', [DashboardController::class, 'report'])->name('dashboard.report');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // Users CRUD
+    Route::resource('users', AdminUserController::class);
+
     // UI Settings
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
