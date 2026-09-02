@@ -101,7 +101,7 @@
                onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(69,70,77,0.2)'">
                 <div style="aspect-ratio:3/4; overflow:hidden; background:#191c1d;">
                     @if($advocate->image_path)
-                        <img src="{{ asset('storage/'.$advocate->image_path) }}" alt="{{ $advocate->name }}"
+                        <img src="{{ \Storage::url($advocate->image_path) }}" alt="{{ $advocate->name }}"
                              style="width:100%; height:100%; object-fit:cover; filter:grayscale(1); transition:filter 0.5s;"
                              onmouseover="this.style.filter='grayscale(0)'" onmouseout="this.style.filter='grayscale(1)'">
                     @else
@@ -150,7 +150,7 @@
 
                 @if($news->image_path)
                 <div style="height:192px; overflow:hidden;">
-                    <img src="{{ asset('storage/'.$news->image_path) }}" alt="{{ $news->title }}"
+                    <img src="{{ \Storage::url($news->image_path) }}" alt="{{ $news->title }}"
                          style="width:100%; height:100%; object-fit:cover; opacity:0.8; transition:transform 0.7s;"
                          onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                 </div>

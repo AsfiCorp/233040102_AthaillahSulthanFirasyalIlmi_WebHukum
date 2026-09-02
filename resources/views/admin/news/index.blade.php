@@ -55,7 +55,7 @@
                 <td class="px-6 py-4">
                     <div style="width:64px; height:48px; overflow:hidden; background:#191c1d;">
                         @if($item->image_path)
-                            <img src="{{ asset('storage/'.$item->image_path) }}" alt="{{ $item->title }}"
+                            <img src="{{ \Storage::url($item->image_path) }}" alt="{{ $item->title }}"
                                  class="w-full h-full object-cover">
                         @else
                             <div class="w-full h-full flex items-center justify-center">

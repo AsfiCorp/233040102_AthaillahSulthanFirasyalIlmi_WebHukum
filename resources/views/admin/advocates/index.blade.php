@@ -60,7 +60,7 @@
                 <td class="px-6 py-4">
                     <div class="w-14 h-14 overflow-hidden" style="border-radius:4px; background:#191c1d;">
                         @if($advocate->image_path)
-                            <img src="{{ asset('storage/'.$advocate->image_path) }}" alt="{{ $advocate->name }}"
+                            <img src="{{ \Storage::url($advocate->image_path) }}" alt="{{ $advocate->name }}"
                                  class="w-full h-full object-cover">
                         @else
                             <div class="w-full h-full flex items-center justify-center">

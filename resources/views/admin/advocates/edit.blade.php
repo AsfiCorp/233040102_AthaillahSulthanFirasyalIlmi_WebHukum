@@ -57,7 +57,7 @@
 
                 @if($advocate->image_path)
                 <div class="mb-4 flex items-center gap-4">
-                    <img src="{{ asset('storage/'.$advocate->image_path) }}" alt="{{ $advocate->name }}"
+                    <img src="{{ \Storage::url($advocate->image_path) }}" alt="{{ $advocate->name }}"
                          style="height:80px; border:1px solid rgba(233,195,73,0.2);">
                     <p style="font-size:12px; color:#c6c6ce;">Current photo. Upload a new one to replace it.</p>
                 </div>

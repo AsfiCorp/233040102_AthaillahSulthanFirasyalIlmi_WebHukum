@@ -12,7 +12,7 @@
         <div class="md:col-span-5 flex flex-col gap-6 sticky top-32">
             <div class="relative w-full overflow-hidden group" style="aspect-ratio:3/4; background:#1c2541; border:1px solid rgba(233,195,73,0.1);">
                 @if($advocate->image_path)
-                    <img src="{{ asset('storage/'.$advocate->image_path) }}" alt="{{ $advocate->name }}"
+                    <img src="{{ \Storage::url($advocate->image_path) }}" alt="{{ $advocate->name }}"
                          class="w-full h-full object-cover transition-transform duration-700"
                          style="opacity:0.9;"
                          onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">

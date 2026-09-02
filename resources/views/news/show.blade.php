@@ -19,7 +19,7 @@
 
             @if($news->image_path)
             <div class="relative overflow-hidden group mb-12" style="width:100%; aspect-ratio:21/9; background:#111415;">
-                <img src="{{ asset('storage/'.$news->image_path) }}" alt="{{ $news->title }}"
+                <img src="{{ \Storage::url($news->image_path) }}" alt="{{ $news->title }}"
                      class="w-full h-full object-cover transition-transform duration-700"
                      onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                 <div class="absolute inset-0" style="border:1px solid rgba(233,195,73,0.2); pointer-events:none;"></div>

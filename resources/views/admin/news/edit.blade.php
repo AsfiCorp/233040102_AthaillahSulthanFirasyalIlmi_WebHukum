@@ -72,7 +72,7 @@
                 <label for="image" style="display:block; font-size:12px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase; color:#c6c6ce; margin-bottom:8px;">Cover Image</label>
                 @if($news->image_path)
                 <div class="mb-4 flex items-center gap-4">
-                    <img src="{{ asset('storage/'.$news->image_path) }}" alt="{{ $news->title }}"
+                    <img src="{{ \Storage::url($news->image_path) }}" alt="{{ $news->title }}"
                          style="height:64px; border:1px solid rgba(233,195,73,0.2);">
                     <p style="font-size:12px; color:#c6c6ce;">Current cover. Upload to replace it.</p>
                 </div>

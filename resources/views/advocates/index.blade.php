@@ -40,7 +40,7 @@
 
                 <div style="aspect-ratio:3/4; overflow:hidden; background:#191c1d;">
                     @if($advocate->image_path)
-                        <img src="{{ asset('storage/'.$advocate->image_path) }}" alt="{{ $advocate->name }}"
+                        <img src="{{ \Storage::url($advocate->image_path) }}" alt="{{ $advocate->name }}"
                              class="w-full h-full object-cover transition-all duration-500"
                              style="filter:grayscale(1);"
                              onmouseover="this.style.filter='grayscale(0)'" onmouseout="this.style.filter='grayscale(1)'">
@@ -81,7 +81,7 @@
                onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='rgba(69,70,77,0.2)'">
                 <div style="aspect-ratio:3/4; overflow:hidden; background:#191c1d;">
                     @if($advocate->image_path)
-                        <img src="{{ asset('storage/'.$advocate->image_path) }}" alt="{{ $advocate->name }}"
+                        <img src="{{ \Storage::url($advocate->image_path) }}" alt="{{ $advocate->name }}"
                              class="w-full h-full object-cover" style="filter:grayscale(1);"
                              onmouseover="this.style.filter='grayscale(0)'" onmouseout="this.style.filter='grayscale(1)'">
                     @else

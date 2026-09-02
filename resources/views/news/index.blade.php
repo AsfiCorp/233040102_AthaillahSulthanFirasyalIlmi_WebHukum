@@ -30,7 +30,7 @@
                 {{-- Image --}}
                 <div style="height:192px; overflow:hidden; position:relative;">
                     @if($item->image_path)
-                        <img src="{{ asset('storage/'.$item->image_path) }}" alt="{{ $item->title }}"
+                        <img src="{{ \Storage::url($item->image_path) }}" alt="{{ $item->title }}"
                              class="w-full h-full object-cover transition-transform duration-700"
                              style="opacity:0.8; {{ !$item->isExternal() ? 'filter:grayscale(1);' : '' }}"
                              onmouseover="this.style.transform='scale(1.05)'; this.style.filter='none'"
