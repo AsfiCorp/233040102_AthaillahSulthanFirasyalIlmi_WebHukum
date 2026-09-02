@@ -35,6 +35,8 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
+        $request->session()->regenerate();
+
         return redirect()->route('home')->with('success', 'Pendaftaran berhasil. Anda sudah login.');
     }
 }
