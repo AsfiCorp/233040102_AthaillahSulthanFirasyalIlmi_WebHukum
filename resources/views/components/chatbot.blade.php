@@ -68,23 +68,39 @@
 
 <script>
 (function() {
-    const toggle = document.getElementById('chatbot-toggle');
-    const panel = document.getElementById('chatbot-panel');
+    const toggle   = document.getElementById('chatbot-toggle');
+    const panel    = document.getElementById('chatbot-panel');
     const closeBtn = document.getElementById('chatbot-close');
-    const input = document.getElementById('chatbot-input');
-    const sendBtn = document.getElementById('chatbot-send');
+    const input    = document.getElementById('chatbot-input');
+    const sendBtn  = document.getElementById('chatbot-send');
     const messages = document.getElementById('chatbot-messages');
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    // ── Gemini called directly from browser (avoids server timeout) ──
+    const GEMINI_API_KEY = '{{ config("services.gemini.api_key") }}';
+    const GEMINI_URL     = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=' + GEMINI_API_KEY;
+    const SYSTEM_PROMPT  = "Kamu adalah asisten hukum virtual dari D'Mahesa Law Firm, kantor hukum terkemuka di Indonesia. Jawab pertanyaan dengan profesional, ramah, dan dalam bahasa Indonesia. Berikan jawaban yang ringkas dan padat. Jika pertanyaan di luar bidang hukum, arahkan pengguna untuk berkonsultasi langsung dengan advokat kami.";
 
     function togglePanel() {
         panel.classList.toggle('hidden');
-        if (!panel.classList.contains('hidden')) {
-            input.focus();
-        }
+        if (!panel.classList.contains('hidden')) { input.focus(); }
     }
 
     toggle.addEventListener('click', togglePanel);
     closeBtn.addEventListener('click', togglePanel);
+
+    function escapeHtml(text) {
+        const d = document.createElement('div');
+        d.appendChild(document.createTextNode(text));
+        return d.innerHTML;
+    }
+
+    function parseMarkdown(text) {
+        let html = escapeHtml(text);
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        html = html.replace(/\n/g, '<br>');
+        return html;
+    }
 
     function appendMessage(text, isUser) {
         const div = document.createElement('div');
@@ -108,23 +124,8 @@
     }
 
     function removeTyping() {
-        const typing = document.getElementById('typing-indicator');
-        if (typing) { typing.remove(); }
-    }
-
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.appendChild(document.createTextNode(text));
-        return div.innerHTML;
-    }
-
-    function parseMarkdown(text) {
-        // Escape HTML first to prevent XSS, then apply safe markdown transforms
-        let html = escapeHtml(text);
-        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
-        html = html.replace(/\n/g, '<br>');
-        return html;
+        const t = document.getElementById('typing-indicator');
+        if (t) { t.remove(); }
     }
 
     async function sendMessage() {
@@ -137,21 +138,38 @@
         sendBtn.disabled = true;
 
         try {
-            const res = await fetch('{{ route("chatbot") }}', {
+            const res = await fetch(GEMINI_URL, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': csrfToken,
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({ prompt: text }),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    system_instruction: {
+                        parts: [{ text: SYSTEM_PROMPT }]
+                    },
+                    contents: [{
+                        parts: [{ text: text }]
+                    }],
+                    generationConfig: {
+                        temperature: 0.7,
+                        maxOutputTokens: 1024
+                    }
+                })
             });
+
             const data = await res.json();
+
             removeTyping();
-            appendMessage(parseMarkdown(data.reply || 'Maaf, terjadi kesalahan.'), false);
+
+            if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                const reply = data.candidates[0].content.parts[0].text;
+                appendMessage(parseMarkdown(reply), false);
+            } else if (data.error) {
+                appendMessage('Error: ' + escapeHtml(data.error.message), false);
+            } else {
+                appendMessage('Maaf, saya tidak dapat memproses permintaan Anda saat ini.', false);
+            }
         } catch (e) {
             removeTyping();
-            appendMessage('Terjadi kesalahan koneksi. Silakan coba lagi.', false);
+            appendMessage('Terjadi kesalahan koneksi. Pastikan internet Anda terhubung.', false);
         } finally {
             sendBtn.disabled = false;
             input.focus();
