@@ -150,7 +150,7 @@
                     }],
                     generationConfig: {
                         temperature: 0.7,
-                        maxOutputTokens: 1024
+                        maxOutputTokens: 4096
                     }
                 })
             });
