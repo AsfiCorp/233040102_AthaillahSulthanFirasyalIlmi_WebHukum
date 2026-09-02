@@ -43,7 +43,12 @@ class LoginController extends Controller
             RateLimiter::clear($throttleKey);
             $request->session()->regenerate();
 
-            return redirect()->intended(route('admin.dashboard'));
+            $user = Auth::user();
+            if ($user->is_admin || $user->email === 'admin@dmahesa.com') {
+                return redirect()->intended(route('admin.dashboard'));
+            }
+
+            return redirect()->route('home')->with('success', 'Berhasil login.');
         }
 
         RateLimiter::hit($throttleKey, 60);

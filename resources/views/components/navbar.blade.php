@@ -52,11 +52,21 @@
                     Login
                 </a>
             @else
-                <a href="{{ route('admin.dashboard') }}"
-                   style="color:rgba(225,227,228,0.7); transition:color 0.3s; text-decoration:none;"
-                   onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='rgba(225,227,228,0.7)'">
-                    Admin
-                </a>
+                @if(Auth::user()->is_admin || Auth::user()->email === 'admin@dmahesa.com')
+                    <a href="{{ route('admin.dashboard') }}"
+                       style="color:rgba(225,227,228,0.7); transition:color 0.3s; text-decoration:none;"
+                       onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='rgba(225,227,228,0.7)'">
+                        Admin
+                    </a>
+                @else
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit" style="color:rgba(225,227,228,0.7); transition:color 0.3s; text-decoration:none; background:none; border:none; padding:0; font:inherit; cursor:pointer;"
+                                onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='rgba(225,227,228,0.7)'">
+                            Logout
+                        </button>
+                    </form>
+                @endif
             @endguest
         </nav>
 
@@ -87,7 +97,16 @@
             @guest
                 <a href="{{ route('login') }}" style="color:#e9c349; text-decoration:none;">Login</a>
             @else
-                <a href="{{ route('admin.dashboard') }}" style="color:#e9c349; text-decoration:none;">Admin Panel</a>
+                @if(Auth::user()->is_admin || Auth::user()->email === 'admin@dmahesa.com')
+                    <a href="{{ route('admin.dashboard') }}" style="color:#e9c349; text-decoration:none;">Admin Panel</a>
+                @else
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit" style="color:#e9c349; text-decoration:none; background:none; border:none; padding:0; font:inherit; cursor:pointer;">
+                            Logout
+                        </button>
+                    </form>
+                @endif
             @endguest
         </div>
     </div>

@@ -41,6 +41,10 @@ class GoogleController extends Controller
 
         Auth::login($user, true);
 
-        return redirect()->route('admin.dashboard');
+        if ($user->is_admin || $user->email === 'admin@dmahesa.com') {
+            return redirect()->route('admin.dashboard');
+        }
+
+        return redirect()->route('home')->with('success', 'Berhasil login dengan Google.');
     }
 }

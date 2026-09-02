@@ -57,7 +57,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->midd
 // Admin Routes (auth-protected)
 // ──────────────────────────────────────────────────────────────────────────────
 
-Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', \App\Http\Middleware\CheckAdminPanelAccess::class])->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
