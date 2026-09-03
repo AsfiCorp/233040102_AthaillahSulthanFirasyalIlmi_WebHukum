@@ -136,42 +136,63 @@
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    async function callGemini(prompt, attempt) {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
+    const GEMINI_MODELS = [
+        'gemini-3.5-flash-lite',
+        'gemini-2.5-flash-lite',
+        'gemini-2.5-flash'
+    ];
 
-        const res  = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-                contents: [{ parts: [{ text: prompt }] }],
-                generationConfig: { temperature: 0.7, maxOutputTokens: 4096 }
-            })
-        });
+    async function callGemini(prompt, modelIndex = 0) {
+        if (modelIndex >= GEMINI_MODELS.length) {
+            throw new Error('Semua model AI sedang sibuk.');
+        }
 
-        const data = await res.json();
+        const model = GEMINI_MODELS[modelIndex];
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
 
-        if (data.error) {
-            const msg  = (data.error.message || '').toLowerCase();
-            const busy = data.error.code === 503 || data.error.code === 429 ||
-                         msg.includes('demand') || msg.includes('overload') || msg.includes('quota');
+        try {
+            const res = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+                    contents: [{ parts: [{ text: prompt }] }],
+                    generationConfig: { temperature: 0.7, maxOutputTokens: 4096 }
+                })
+            });
 
-            // Retry up to 3 times with backoff if server is busy
-            if (busy && attempt < 3) {
-                const wait = [2000, 4000, 8000][attempt];
-                updateTypingLabel(`Server sibuk, mencoba ulang (${attempt + 1}/3)...`);
-                await sleep(wait);
-                return callGemini(prompt, attempt + 1);
+            const data = await res.json();
+
+            if (data.error) {
+                // If it's an invalid API key, throw fatal error
+                if (data.error.message && data.error.message.toLowerCase().includes('api key')) {
+                    throw new Error(data.error.message);
+                }
+                
+                throw new Error('Model unavailable');
             }
 
-            throw new Error(data.error.message);
-        }
+            if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                return data.candidates[0].content.parts[0].text;
+            }
 
-        if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-            return data.candidates[0].content.parts[0].text;
-        }
+            throw new Error('Respons tidak valid dari AI.');
+        } catch (e) {
+            // Do not retry if it's an API key issue
+            if (e.message.toLowerCase().includes('api key')) {
+                throw e;
+            }
 
-        throw new Error('Respons tidak valid dari AI.');
+            // Fallback to next model
+            console.warn(`Model ${model} gagal, beralih ke model berikutnya...`);
+            if (modelIndex < GEMINI_MODELS.length - 1) {
+                updateTypingLabel(`Mencoba model AI alternatif (${modelIndex + 1}/${GEMINI_MODELS.length})...`);
+                await sleep(500); // short wait before trying next
+                return callGemini(prompt, modelIndex + 1);
+            }
+            
+            throw e;
+        }
     }
 
     async function sendMessage() {
