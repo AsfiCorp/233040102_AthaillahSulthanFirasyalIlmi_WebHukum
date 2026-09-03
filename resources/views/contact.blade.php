@@ -9,9 +9,9 @@
 
         {{-- Header --}}
         <div class="mb-20 md:w-8/12">
-            <h1 style="font-family:'Playfair Display',serif; font-size:clamp(40px,6vw,64px); line-height:1.1; font-weight:700; color:#e1e3e4; margin-bottom:24px;">Contact Us</h1>
+            <h1 style="font-family:'Playfair Display',serif; font-size:clamp(40px,6vw,64px); line-height:1.1; font-weight:700; color:#e1e3e4; margin-bottom:24px;">{{ setting('contact_title', 'Contact Us') }}</h1>
             <p style="font-size:18px; line-height:28px; color:#c6c6ce; max-width:672px;">
-                Schedule a confidential consultation with our legal experts. We represent high-net-worth individuals and corporate entities with uncompromising expertise.
+                {{ setting('contact_desc', 'Schedule a confidential consultation with our legal experts. We represent high-net-worth individuals and corporate entities with uncompromising expertise.') }}
             </p>
         </div>
 
@@ -72,17 +72,17 @@
                 </form>
             </div>
 
-            {{-- WhatsApp Card --}}
-            <div class="md:col-span-4 flex flex-col gap-8">
-                <div class="p-8 flex flex-col justify-between h-full"
-                     style="background:#1c2541; border:1px solid rgba(233,195,73,0.3);">
-                    <div class="mb-6">
-                        <span class="material-symbols-outlined mb-4 block" style="font-size:40px; color:#e9c349; font-variation-settings:'FILL' 1;">chat</span>
-                        <h3 style="font-family:'Playfair Display',serif; font-size:32px; font-weight:600; color:#e1e3e4; margin-bottom:8px;">Instant Support</h3>
-                        <p style="font-size:16px; line-height:24px; color:#c6c6ce;">
-                            Connect directly with our client relations team via WhatsApp for immediate assistance.
-                        </p>
-                    </div>
+        {{-- WhatsApp Card --}}
+        <div class="md:col-span-4 flex flex-col gap-8">
+            <div class="p-8 flex flex-col justify-between h-full"
+                 style="background:#1c2541; border:1px solid rgba(233,195,73,0.3);">
+                <div class="mb-6">
+                    <span class="material-symbols-outlined mb-4 block" style="font-size:40px; color:#e9c349; font-variation-settings:'FILL' 1;">chat</span>
+                    <h3 style="font-family:'Playfair Display',serif; font-size:32px; font-weight:600; color:#e1e3e4; margin-bottom:8px;">{{ setting('contact_wa_title', 'Instant Support') }}</h3>
+                    <p style="font-size:16px; line-height:24px; color:#c6c6ce;">
+                        {{ setting('contact_wa_desc', 'Connect directly with our client relations team via WhatsApp for immediate assistance.') }}
+                    </p>
+                </div>
                     <a href="{{ setting('wa_btn_url', 'https://wa.me/#') }}"
                        class="flex items-center justify-center gap-2 mt-auto transition-colors duration-300"
                        style="border:1px solid #e9c349; color:#e9c349; font-size:12px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase; padding:16px 24px; text-decoration:none;"

@@ -153,6 +153,77 @@
         </div>
     </div>
 
+    {{-- CONTACT PAGE SETTINGS --}}
+    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-700 bg-slate-900/50">
+            <h2 class="text-lg font-semibold text-white">Contact Page</h2>
+        </div>
+        <div class="p-6 space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Contact Us Title</label>
+                    <input type="text" name="contact_title" value="{{ $settings['contact_title'] ?? 'Contact Us' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Contact Us Description</label>
+                    <textarea name="contact_desc" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">{{ $settings['contact_desc'] ?? 'Schedule a confidential consultation with our legal experts. We represent high-net-worth individuals and corporate entities with uncompromising expertise.' }}</textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">WhatsApp Card Title</label>
+                    <input type="text" name="contact_wa_title" value="{{ $settings['contact_wa_title'] ?? 'Instant Support' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">WhatsApp Card Description</label>
+                    <textarea name="contact_wa_desc" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">{{ $settings['contact_wa_desc'] ?? 'Connect directly with our client relations team via WhatsApp for immediate assistance.' }}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- SOCIAL MEDIA SETTINGS --}}
+    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-700 bg-slate-900/50">
+            <h2 class="text-lg font-semibold text-white">Social Media Links (Footer)</h2>
+        </div>
+        <div class="p-6 space-y-6">
+            <p class="text-xs text-slate-400">Biarkan kosong jika Anda tidak ingin menampilkannya di footer.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">LinkedIn URL</label>
+                    <input type="url" name="social_linkedin" value="{{ $settings['social_linkedin'] ?? '' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Instagram URL</label>
+                    <input type="url" name="social_instagram" value="{{ $settings['social_instagram'] ?? '' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Facebook URL</label>
+                    <input type="url" name="social_facebook" value="{{ $settings['social_facebook'] ?? '' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- SEO SETTINGS --}}
+    <div class="bg-slate-800 rounded-lg border border-slate-700 overflow-hidden">
+        <div class="px-6 py-4 border-b border-slate-700 bg-slate-900/50">
+            <h2 class="text-lg font-semibold text-white">Global SEO Meta Tags</h2>
+        </div>
+        <div class="p-6 space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-2">Default Meta Title</label>
+                <input type="text" name="seo_title" value="{{ $settings['seo_title'] ?? 'D\'Mahesa Legal Group - Keadilan | Integritas | Profesionalisme' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-2">Default Meta Description</label>
+                <textarea name="seo_description" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">{{ $settings['seo_description'] ?? 'D\'Mahesa Legal Group — Kantor hukum terkemuka yang menghadirkan keadilan, integritas, dan profesionalisme.' }}</textarea>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-2">Meta Keywords (pisahkan dengan koma)</label>
+                <input type="text" name="seo_keywords" value="{{ $settings['seo_keywords'] ?? 'law firm, dmahesa, hukum, advokat jakarta, pengacara' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
+            </div>
+        </div>
+    </div>
     <div class="flex justify-end">
         <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold py-3 px-8 rounded-lg shadow transition-colors flex items-center gap-2">
             <span class="material-symbols-outlined" style="font-size:18px;">save</span>

@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', "D'Mahesa Legal Group - Keadilan | Integritas | Profesionalisme")</title>
-    <meta name="description" content="@yield('meta-description', "D'Mahesa Legal Group — Kantor hukum terkemuka yang menghadirkan keadilan, integritas, dan profesionalisme.")">
+    <title>@yield('title', setting('seo_title', "D'Mahesa Legal Group - Keadilan | Integritas | Profesionalisme"))</title>
+    <meta name="description" content="@yield('meta-description', setting('seo_description', "D'Mahesa Legal Group — Kantor hukum terkemuka yang menghadirkan keadilan, integritas, dan profesionalisme."))">
+    <meta name="keywords" content="{{ setting('seo_keywords', 'law firm, dmahesa, hukum, advokat jakarta, pengacara') }}">
 
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -11,6 +11,23 @@
             <p style="color:#c6c6ce; font-size:16px; line-height:24px; margin-bottom:24px;">
                 {{ setting('footer_desc', 'Elevating legal strategy with precision and authority.') }}
             </p>
+            <div class="flex gap-4">
+                @if(setting('social_linkedin'))
+                <a href="{{ setting('social_linkedin') }}" target="_blank" rel="noopener noreferrer" style="color:#c6c6ce; transition:color 0.3s;" onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='#c6c6ce'">
+                    <span class="material-symbols-outlined">work</span>
+                </a>
+                @endif
+                @if(setting('social_instagram'))
+                <a href="{{ setting('social_instagram') }}" target="_blank" rel="noopener noreferrer" style="color:#c6c6ce; transition:color 0.3s;" onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='#c6c6ce'">
+                    <span class="material-symbols-outlined">photo_camera</span>
+                </a>
+                @endif
+                @if(setting('social_facebook'))
+                <a href="{{ setting('social_facebook') }}" target="_blank" rel="noopener noreferrer" style="color:#c6c6ce; transition:color 0.3s;" onmouseover="this.style.color='#e9c349'" onmouseout="this.style.color='#c6c6ce'">
+                    <span class="material-symbols-outlined">public</span>
+                </a>
+                @endif
+            </div>
         </div>
 
         {{-- Firm Links --}}
