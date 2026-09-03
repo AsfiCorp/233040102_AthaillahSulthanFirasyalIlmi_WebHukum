@@ -57,8 +57,6 @@ class NewsController extends Controller
 
         if ($validated['type'] === 'internal') {
             $validated['external_url'] = null;
-        } else {
-            $validated['content'] = null;
         }
 
         $validated['admin_id'] = Auth::id();
@@ -101,8 +99,6 @@ class NewsController extends Controller
 
         if ($validated['type'] === 'internal') {
             $validated['external_url'] = null;
-        } else {
-            $validated['content'] = null;
         }
 
         $news->update($validated);

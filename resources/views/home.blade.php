@@ -162,9 +162,17 @@
                         {{ $news->isExternal() ? 'External Source' : 'Firm News' }}
                     </span>
 
-                    <h3 class="mb-4 transition-colors duration-300 break-words line-clamp-2" style="font-family:'Playfair Display',serif; font-size:24px; font-weight:600; color:#e1e3e4; flex-grow:1; display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;">
+                    <h3 class="mb-2 transition-colors duration-300 break-words line-clamp-2" style="font-family:'Playfair Display',serif; font-size:24px; font-weight:600; color:#e1e3e4; display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden;">
                         {{ $news->title }}
                     </h3>
+
+                    @if($news->content)
+                    <p class="mb-4 text-sm line-clamp-3" style="color:#c6c6ce; line-height:1.6; display:-webkit-box; -webkit-box-orient:vertical; overflow:hidden; flex-grow:1;">
+                        {{ Str::limit(strip_tags($news->content), 120) }}
+                    </p>
+                    @else
+                    <div style="flex-grow:1;"></div>
+                    @endif
 
                     <div class="flex items-center justify-between mt-4">
                         <span style="color:#c6c6ce; font-size:12px;">{{ $news->created_at->format('d M Y') }}</span>
