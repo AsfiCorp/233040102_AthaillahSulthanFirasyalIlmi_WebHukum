@@ -11,7 +11,7 @@
     </div>
 @endif
 
-<form action="{{ route('admin.settings.update') }}" method="POST" class="space-y-8">
+<form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
     @csrf
     @method('PUT')
 
@@ -22,6 +22,17 @@
         </div>
         <div class="p-6 space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Logo Website (Opsional, max 2MB)</label>
+                    <div class="flex items-center gap-4">
+                        @if(isset($settings['logo']))
+                        <div class="bg-slate-900 p-2 rounded-lg border border-slate-700 h-16 flex items-center justify-center">
+                            <img src="{{ \Storage::url($settings['logo']) }}" alt="Current Logo" class="h-10 w-auto object-contain">
+                        </div>
+                        @endif
+                        <input type="file" name="logo" accept="image/*" class="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-amber-500 file:text-slate-900 hover:file:bg-amber-600">
+                    </div>
+                </div>
                 <div>
                     <label class="block text-sm font-medium text-slate-300 mb-2">Nama Brand (Logo Text)</label>
                     <input type="text" name="brand_name" value="{{ $settings['brand_name'] ?? 'D\'MAHESA' }}" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">
@@ -44,6 +55,15 @@
             <h2 class="text-lg font-semibold text-white">Beranda: Hero Section</h2>
         </div>
         <div class="p-6 space-y-6">
+            <div>
+                <label class="block text-sm font-medium text-slate-300 mb-2">Background Hero (Opsional, max 5MB)</label>
+                @if(isset($settings['hero_bg']))
+                <div class="mb-3 w-full h-32 bg-slate-900 rounded-lg border border-slate-700 overflow-hidden relative">
+                    <img src="{{ \Storage::url($settings['hero_bg']) }}" alt="Hero Background" class="w-full h-full object-cover opacity-50">
+                </div>
+                @endif
+                <input type="file" name="hero_bg" accept="image/*" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-amber-500 file:text-slate-900 hover:file:bg-amber-600">
+            </div>
             <div>
                 <label class="block text-sm font-medium text-slate-300 mb-2">Judul Utama (Gunakan <br> untuk baris baru)</label>
                 <textarea name="hero_title" rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-amber-500">{{ $settings['hero_title'] ?? "Keadilan\nIntegritas\nProfesionalisme" }}</textarea>

@@ -8,10 +8,9 @@
 {{-- Hero Section --}}
 <section class="relative min-h-screen flex items-center" style="padding-top:80px;">
 
-    {{-- Background --}}
     <div class="absolute inset-0 z-0">
         <div class="w-full h-full bg-cover bg-center opacity-40"
-             style="background-image:url('{{ asset('images/hero-bg.jpeg') }}');">
+             style="background-image:url('{{ setting('hero_bg') ? \Storage::url(setting('hero_bg')) : asset('images/hero-bg.jpeg') }}');">
         </div>
         <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(11,19,43,0.92), rgba(11,19,43,0.45));"></div>
     </div>

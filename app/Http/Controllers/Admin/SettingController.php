@@ -26,12 +26,34 @@ class SettingController extends Controller
      */
     public function update(Request $request): RedirectResponse
     {
-        $data = $request->except(['_token', '_method']);
+        $data = $request->except(['_token', '_method', 'logo', 'hero_bg']);
 
-        // Validate all settings keys are strings and not too long
+        // Validate text settings
         $request->validate(
             collect($data)->mapWithKeys(fn ($v, $k) => [$k => ['nullable', 'string', 'max:500']])->toArray()
         );
+
+        // Validate files
+        $request->validate([
+            'logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,svg,webp', 'max:2048'],
+            'hero_bg' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+        ]);
+
+        if ($request->hasFile('logo')) {
+            // Hapus gambar lama jika ada
+            if ($oldLogo = Setting::where('key', 'logo')->value('value')) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($oldLogo);
+            }
+            $data['logo'] = $request->file('logo')->store('settings', 'public');
+        }
+
+        if ($request->hasFile('hero_bg')) {
+            // Hapus gambar lama jika ada
+            if ($oldHero = Setting::where('key', 'hero_bg')->value('value')) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($oldHero);
+            }
+            $data['hero_bg'] = $request->file('hero_bg')->store('settings', 'public');
+        }
 
         foreach ($data as $key => $value) {
             Setting::updateOrCreate(

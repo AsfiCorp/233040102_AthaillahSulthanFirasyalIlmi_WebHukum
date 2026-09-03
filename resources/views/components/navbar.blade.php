@@ -7,7 +7,7 @@
         {{-- Brand --}}
         <a href="{{ route('home') }}" class="flex items-center gap-3 font-bold tracking-tighter"
            style="font-family:'Playfair Display',serif; font-size:32px; line-height:40px; color:#e1e3e4; text-decoration:none;">
-            <img src="{{ asset('images/logo.jpeg') }}" alt="Logo" style="height:40px; width:auto; object-fit:contain; border-radius:4px;">
+            <img src="{{ setting('logo') ? \Storage::url(setting('logo')) : asset('images/logo.jpeg') }}" alt="Logo" style="height:40px; width:auto; object-fit:contain; border-radius:4px;">
             <span>{{ setting('brand_name', 'D\'MAHESA') }}</span>
         </a>
 
