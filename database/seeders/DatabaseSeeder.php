@@ -21,12 +21,12 @@ class DatabaseSeeder extends Seeder
 
         // Advocates from the UI
         $advocates = [
-            ['name' => 'Adam Hasan', 'role' => 'Senior Partner', 'short_story' => 'Adam Hasan SH, S.Pt, MH, ME, CLA, CIL — Senior Partner dengan keahlian dalam litigasi perusahaan, audit hukum, dan hukum perdagangan internasional. Beliau memimpin divisi restrukturisasi perusahaan dan sengketa perdagangan internasional di D\'Mahesa.'],
-            ['name' => 'Herman Subekti', 'role' => 'Partner', 'short_story' => 'Herman Subekti SH — Partner yang berpengalaman dalam bidang hukum perdata dan hukum bisnis. Telah menangani berbagai kasus kompleks selama lebih dari satu dekade.'],
-            ['name' => 'AR Enggang Simpathy', 'role' => 'Associate', 'short_story' => 'AR Enggang Simpathy SH, C.Me, CIL — Associate yang berfokus pada mediasi dan hukum internasional. Memiliki sertifikasi mediator dan pengalaman dalam penyelesaian sengketa alternatif.'],
-            ['name' => 'Dedi Junaedi', 'role' => 'Associate', 'short_story' => 'Dedi Junaedi SH — Associate yang menangani kasus-kasus hukum perdata dan kriminal dengan dedikasi tinggi.'],
-            ['name' => 'Muhammad', 'role' => 'Associate', 'short_story' => 'Muhammad SH — Associate muda yang bersemangat dengan keahlian dalam hukum ketenagakerjaan dan hukum perusahaan.'],
-            ['name' => 'Sarlin Wagola', 'role' => 'Associate', 'short_story' => 'Sarlin Wagola SH — Associate perempuan yang berpengalaman dalam hukum keluarga dan perlindungan konsumen.'],
+            ['name' => 'Adam Hasan', 'role' => 'Advocate', 'short_story' => 'Adam Hasan SH, S.Pt, MH, ME, CLA, CIL — Senior Partner dengan keahlian dalam litigasi perusahaan, audit hukum, dan hukum perdagangan internasional. Beliau memimpin divisi restrukturisasi perusahaan dan sengketa perdagangan internasional di D\'Mahesa.'],
+            ['name' => 'Herman Subekti', 'role' => 'Advocate', 'short_story' => 'Herman Subekti SH — Partner yang berpengalaman dalam bidang hukum perdata dan hukum bisnis. Telah menangani berbagai kasus kompleks selama lebih dari satu dekade.'],
+            ['name' => 'AR Enggang Simpathy', 'role' => 'Advocate', 'short_story' => 'AR Enggang Simpathy SH, C.Me, CIL — Associate yang berfokus pada mediasi dan hukum internasional. Memiliki sertifikasi mediator dan pengalaman dalam penyelesaian sengketa alternatif.'],
+            ['name' => 'Dedi Junaedi', 'role' => 'Advocate', 'short_story' => 'Dedi Junaedi SH — Associate yang menangani kasus-kasus hukum perdata dan kriminal dengan dedikasi tinggi.'],
+            ['name' => 'Muhammad', 'role' => 'Advocate', 'short_story' => 'Muhammad SH — Associate muda yang bersemangat dengan keahlian dalam hukum ketenagakerjaan dan hukum perusahaan.'],
+            ['name' => 'Sarlin Wagola', 'role' => 'Advocate', 'short_story' => 'Sarlin Wagola SH — Associate perempuan yang berpengalaman dalam hukum keluarga dan perlindungan konsumen.'],
             ['name' => 'Moch Amiruddin', 'role' => 'Paralegal', 'short_story' => 'Moch Amiruddin — Paralegal profesional yang mendukung tim advokat dalam riset hukum dan administrasi kasus.'],
         ];
 

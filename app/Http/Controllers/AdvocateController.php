@@ -13,11 +13,9 @@ class AdvocateController extends Controller
     public function index(): View
     {
         $allAdvocates = Advocate::orderByRaw("CASE role
-            WHEN 'Senior Partner' THEN 1
-            WHEN 'Partner' THEN 2
-            WHEN 'Associate' THEN 3
-            WHEN 'Paralegal' THEN 4
-            ELSE 5 END")
+            WHEN 'Advocate' THEN 1
+            WHEN 'Paralegal' THEN 2
+            ELSE 3 END")
             ->get();
 
         return view('advocates.index', compact('allAdvocates'));

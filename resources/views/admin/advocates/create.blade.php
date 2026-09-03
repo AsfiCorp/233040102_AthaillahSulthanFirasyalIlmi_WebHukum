@@ -40,7 +40,7 @@
                         style="background:#0b132b; border:1px solid rgba(69,70,77,0.3); color:#e1e3e4; font-size:16px;"
                         onfocus="this.style.borderColor='rgba(233,195,73,0.5)'" onblur="this.style.borderColor='rgba(69,70,77,0.3)'">
                     <option value="" disabled selected>Select a role...</option>
-                    @foreach(['Senior Partner', 'Partner', 'Associate', 'Paralegal'] as $role)
+                    @foreach(['Advocate', 'Paralegal'] as $role)
                     <option value="{{ $role }}" {{ old('role') === $role ? 'selected' : '' }}>{{ $role }}</option>
                     @endforeach
                 </select>
