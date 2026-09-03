@@ -77,7 +77,14 @@
 
     // ── Gemini called directly from browser (avoids server timeout) ──
     const GEMINI_API_KEY = '{{ config("services.gemini.api_key") }}';
-    const SYSTEM_PROMPT  = "Kamu adalah asisten hukum virtual dari D'Mahesa Law Firm, kantor hukum terkemuka di Indonesia. Jawab pertanyaan dengan profesional, ramah, dan dalam bahasa Indonesia. Berikan jawaban yang ringkas dan padat. Jika pertanyaan di luar bidang hukum, arahkan pengguna untuk berkonsultasi langsung dengan advokat kami.";
+    
+    @php
+        $chatSettings = cache('app_settings', []);
+        $waUrl = $chatSettings['wa_btn_url'] ?? 'https://wa.me/';
+        $email = $chatSettings['footer_email'] ?? 'inquiries@dmahesa.com';
+        $address = $chatSettings['footer_location'] ?? 'Jakarta, Indonesia';
+    @endphp
+    const SYSTEM_PROMPT  = `Kamu adalah asisten hukum virtual dari D'Mahesa Law Firm, kantor hukum terkemuka di Indonesia. Jawab pertanyaan dengan profesional, ramah, dan dalam bahasa Indonesia. Berikan jawaban yang ringkas dan padat. Jika pengguna ingin menjadwalkan konsultasi, atau menanyakan kontak/alamat (contact person), berikan informasi ini: WhatsApp: {{ $waUrl }}, Email: {{ $email }}, Alamat: {{ $address }}. Jika pertanyaan di luar bidang hukum, arahkan pengguna untuk menghubungi kontak tersebut.`;
 
     function togglePanel() {
         panel.classList.toggle('hidden');
