@@ -60,8 +60,8 @@
                        onfocus="this.style.borderColor='rgba(233,195,73,0.5)'" onblur="this.style.borderColor='rgba(69,70,77,0.3)'">
             </div>
 
-            <div id="content-group" style="{{ old('type', $news->type) === 'external' ? 'display:none;' : '' }}">
-                <label for="content" style="display:block; font-size:12px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase; color:#c6c6ce; margin-bottom:8px;">Content</label>
+            <div id="content-group">
+                <label id="content-label" for="content" style="display:block; font-size:12px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase; color:#c6c6ce; margin-bottom:8px;">Content</label>
                 <textarea id="content" name="content" rows="10"
                           class="w-full px-4 py-3 resize-y"
                           style="background:#0b132b; border:1px solid rgba(69,70,77,0.3); color:#e1e3e4; font-size:16px; line-height:24px; font-family:'Inter',monospace;"
@@ -132,7 +132,7 @@ function updateTypeUI() {
         internalText.style.fontWeight = '400';
 
         document.getElementById('external-url-group').style.display = '';
-        document.getElementById('content-group').style.display = 'none';
+        document.getElementById('content-label').innerText = 'Short Description (Snippet) *';
     } else {
         internalLabel.style.borderColor = '#e9c349';
         internalCircle.style.borderColor = '#e9c349';
@@ -145,9 +145,11 @@ function updateTypeUI() {
         externalText.style.fontWeight = '400';
 
         document.getElementById('external-url-group').style.display = 'none';
-        document.getElementById('content-group').style.display = '';
+        document.getElementById('content-label').innerText = 'Content *';
     }
 }
+// Run once on load to set the initial label correctly
+document.addEventListener('DOMContentLoaded', updateTypeUI);
 function previewImage(input) {
     const preview = document.getElementById('image-preview');
     const img = document.getElementById('preview-img');
