@@ -52,7 +52,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('admin.users.index')
-            ->with('success', 'Pengguna baru berhasil ditambahkan.');
+            ->with('success', 'New user successfully added.');
     }
 
     /**
@@ -96,7 +96,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('admin.users.index')
-            ->with('success', 'Data pengguna berhasil diperbarui.');
+            ->with('success', 'User data successfully updated.');
     }
 
     /**
@@ -112,6 +112,6 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('admin.users.index')
-            ->with('success', 'Pengguna berhasil dihapus.');
+            ->with('success', 'User successfully deleted.');
     }
 }

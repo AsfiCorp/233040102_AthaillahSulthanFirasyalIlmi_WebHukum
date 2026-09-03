@@ -7,13 +7,13 @@
 
 <div>
     <div class="flex items-center justify-between mb-6">
-        <h2 style="font-family:'Playfair Display',serif; font-size:32px; line-height:40px; font-weight:600; color:#e1e3e4;">Daftar Pengguna</h2>
+        <h2 style="font-family:'Playfair Display',serif; font-size:32px; line-height:40px; font-weight:600; color:#e1e3e4;">Users List</h2>
         <a href="{{ route('admin.users.create') }}"
            class="flex items-center gap-2 px-6 py-3 font-bold transition-colors"
            style="background:#e9c349; color:#0b132b; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none;"
            onmouseover="this.style.background='#ffe088'" onmouseout="this.style.background='#e9c349'">
             <span class="material-symbols-outlined" style="font-size:18px;">add</span>
-            Tambah Pengguna
+            Add User
         </a>
     </div>
 
@@ -56,13 +56,13 @@
                             </a>
                             
                             @if(Auth::id() !== $user->id)
-                            <form action="{{ route('admin.users.destroy', $user) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pengguna ini? Tindakan ini tidak dapat dibatalkan.');">
-                                @csrf
-                                @method('DELETE')
+                            <form action="{{ route('admin.users.destroy', $user) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user? This action cannot be undone.');">
+                                @csrf @method('DELETE')
                                 <button type="submit"
-                                        style="color:#ffb4ab; font-size:12px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase; text-decoration:none; transition:color 0.2s; background:transparent; border:none; cursor:pointer;"
-                                        onmouseover="this.style.color='#ff6b6b'" onmouseout="this.style.color='#ffb4ab'">
-                                    Hapus
+                                        class="flex items-center gap-2 px-4 py-2 transition-colors"
+                                        style="color:#ffb4ab; border:1px solid rgba(255,180,171,0.3); font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;"
+                                        onmouseover="this.style.background='rgba(255,180,171,0.1)'" onmouseout="this.style.background='transparent'">
+                                    <span class="material-symbols-outlined" style="font-size:18px; vertical-align:middle; margin-right:4px;">delete</span>Delete
                                 </button>
                             </form>
                             @endif
@@ -71,7 +71,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="5" class="px-6 py-12 text-center" style="color:#c6c6ce;">Tidak ada data pengguna.</td>
+                    <td colspan="5" class="px-6 py-12 text-center" style="color:#c6c6ce;">No user data found.</td>
                 </tr>
                 @endforelse
             </tbody>

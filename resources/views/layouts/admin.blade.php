@@ -56,7 +56,7 @@
                class="flex items-center gap-3 px-4 py-3 rounded transition-all duration-200 active:scale-95 {{ request()->routeIs('admin.settings.*') ? 'border-r-2' : '' }}"
                style="{{ request()->routeIs('admin.settings.*') ? 'color:#e9c349; border-color:#e9c349; background:rgba(233,195,73,0.05); font-weight:700;' : 'color:#767e9b;' }}">
                 <span class="material-symbols-outlined" style="{{ request()->routeIs('admin.settings.*') ? "font-variation-settings:'FILL' 1;" : '' }}">settings</span>
-                <span style="font-size:12px; line-height:16px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase;">Pengaturan Web</span>
+                <span style="font-size:12px; line-height:16px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase;">Web Settings</span>
             </a>
 
             <a href="{{ route('admin.users.index') }}"

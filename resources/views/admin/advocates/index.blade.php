@@ -86,7 +86,7 @@
                             <span class="material-symbols-outlined" style="font-size:18px; vertical-align:middle; margin-right:4px;">edit</span>Edit
                         </a>
                         <form method="POST" action="{{ route('admin.advocates.destroy', $advocate) }}"
-                              onsubmit="return confirm('Hapus advokat {{ $advocate->name }}? Tindakan ini tidak dapat dibatalkan.')">
+                              onsubmit="return confirm('Delete advocate {{ $advocate->name }}? This action cannot be undone.')">
                             @csrf @method('DELETE')
                             <button type="submit"
                                     style="color:rgba(255,180,171,0.7); font-size:12px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase; background:none; border:none; cursor:pointer; transition:color 0.2s;"

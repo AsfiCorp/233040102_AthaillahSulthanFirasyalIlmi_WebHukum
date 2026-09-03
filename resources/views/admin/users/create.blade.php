@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', "Tambah Pengguna - D'Mahesa")
-@section('page-title', 'Tambah Pengguna Baru')
+@section('title', "Add User - Admin")
+@section('page-title', 'Add New User')
 
 @section('content')
 
@@ -68,15 +68,14 @@
             {{-- Submit --}}
             <div class="pt-6 border-t mt-2 flex items-center justify-between" style="border-color:rgba(69,70,77,0.3);">
                 <a href="{{ route('admin.users.index') }}" 
-                   style="color:#c6c6ce; font-size:12px; letter-spacing:0.1em; font-weight:600; text-transform:uppercase;"
-                   onmouseover="this.style.color='#e1e3e4'" onmouseout="this.style.color='#c6c6ce'">
-                   Batal
-                </a>
+                   class="flex items-center gap-2 font-bold transition-colors"
+                   style="border:1px solid rgba(69,70,77,0.4); color:#c6c6ce; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; padding:16px 24px; text-decoration:none;"
+                   onmouseover="this.style.borderColor='rgba(233,195,73,0.4)'" onmouseout="this.style.borderColor='rgba(69,70,77,0.4)'">Cancel</a>
                 <button type="submit" 
-                        class="px-8 py-3 font-bold transition-colors"
-                        style="background:#e9c349; color:#0b132b; font-size:12px; letter-spacing:0.1em; text-transform:uppercase;"
+                        class="flex items-center gap-2 font-bold transition-colors"
+                        style="background:#e9c349; color:#0b132b; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; padding:16px 32px;"
                         onmouseover="this.style.background='#ffe088'" onmouseout="this.style.background='#e9c349'">
-                    Simpan Pengguna
+                    <span class="material-symbols-outlined" style="font-size:18px;">save</span> Save User
                 </button>
             </div>
         </form>

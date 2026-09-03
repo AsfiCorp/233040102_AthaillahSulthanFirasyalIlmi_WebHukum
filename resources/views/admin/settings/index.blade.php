@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Pengaturan Web')
-@section('header', 'Pengaturan Web (UI & Konten)')
+@section('title', 'Web Settings')
+@section('header', 'Web Settings (UI & Content)')
 
 @section('content')
 
@@ -154,8 +154,9 @@
     </div>
 
     <div class="flex justify-end">
-        <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold py-3 px-8 rounded-lg shadow transition-colors">
-            Simpan Pengaturan
+        <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold py-3 px-8 rounded-lg shadow transition-colors flex items-center gap-2">
+            <span class="material-symbols-outlined" style="font-size:18px;">save</span>
+            Save Settings
         </button>
     </div>
 </form>

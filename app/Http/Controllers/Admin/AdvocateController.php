@@ -57,7 +57,7 @@ class AdvocateController extends Controller
         Advocate::create($validated);
 
         return redirect()->route('admin.advocates.index')
-            ->with('success', 'Advokat berhasil ditambahkan.');
+            ->with('success', 'Advocate successfully added.');
     }
 
     /**
@@ -93,7 +93,7 @@ class AdvocateController extends Controller
         $advocate->update($validated);
 
         return redirect()->route('admin.advocates.index')
-            ->with('success', 'Advokat berhasil diperbarui.');
+            ->with('success', 'Advocate successfully updated.');
     }
 
     /**
@@ -108,6 +108,6 @@ class AdvocateController extends Controller
         $advocate->delete();
 
         return redirect()->route('admin.advocates.index')
-            ->with('success', 'Advokat berhasil dihapus.');
+            ->with('success', 'Advocate successfully deleted.');
     }
 }

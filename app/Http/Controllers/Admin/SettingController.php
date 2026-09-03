@@ -44,6 +44,6 @@ class SettingController extends Controller
         Cache::forget('app_settings');
 
         return redirect()->route('admin.settings.index')
-            ->with('success', 'Pengaturan berhasil diperbarui.');
+            ->with('success', 'Settings successfully updated.');
     }
 }
